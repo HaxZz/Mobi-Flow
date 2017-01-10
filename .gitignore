@@ -18,6 +18,7 @@
 *.save
 *.autosav
 *.autosave
+._*
 
 # Generated archives
 *.zip
@@ -106,6 +107,7 @@ __OSX/
 __OS_X/
 __WINDOWS/
 .DS_Store
+._.DS_Store
 .directory
 
 # TeX and LaTeX useless files
