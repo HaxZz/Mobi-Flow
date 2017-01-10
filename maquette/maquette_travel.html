@@ -4,32 +4,49 @@
     <meta charset="utf-8" />
     <title>Trajet - Mobi'Flow</title>
     
+    <meta name="robots" content="index, follow" />
+    
+    <link rel="stylesheet"
+	  href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
+    <link rel="stylesheet"
+	  href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css">
+    <script type="text/javascript"
+	    src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    
     <meta name="viewport"
 	  content="min-height: 240px, min-width:240px, max-width=device-width, user-scalable=yes" />
     <link rel="stylesheet" type="text/css" media="all"
 	  href="maquette.css"/>
-    
-    <meta name="robots" content="index, follow" />
   </head>
   <body>
     <header>
-      <h1>Mobi'Flow</h1>
+      <img src="logo.svg" />
     </header>
     
     <main>
       <h2>Définissez votre trajet</h2>
       
-      <p>
-	<label>Votre point de départ</label>
-	<input type="text" />
-      </p>
-      
-      <p>
-	<label>Votre point d'arrivée</label>
-	<input type="text" />
-      </p>
-      
-      <a href="maquette_date.html" class="next">Suivant</a>
+      <form action="maquette_date.html">
+	<p>
+	  <input type="text" placeholder="Votre point de départ" />
+	</p>
+	
+	<p>
+	  <input type="text" placeholder="Votre point d'arrivée" />
+	</p>
+	
+	<p>
+	  <label>Nombre de passager(s)</label>
+	  <input type="number" value="1" min="1" />
+	</p>
+	
+	<p>
+	  <input type="checkbox" />
+	  <label>Acceptation de passager(s) tiers</label>
+	</p>
+	
+	<input type="submit" value="Suivant" class="btn btn-default" />
+      </form>
     </main>
   </body>
 </html>

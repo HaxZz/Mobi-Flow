@@ -1,9 +1,31 @@
 @charset "UTF-8";
 
+
+@font-face
+{
+    font-family: Dustismo;
+    src: url("fonts/dustismo.ttf");
+}
+
+
+*
+{
+    color: white;
+    font-family: Dustismo;
+}
+
+body
+{
+    /*background-image: url("maquette_background.png");*/
+    background-color: white;
+    margin: 20px;
+}
+
 header
 {
     display: block;
     width: 100%;
+    margin: 20px 0px;
 }
 
 header
@@ -16,20 +38,8 @@ header img
     width: 50%;
 }
 
-header h1
-{
-    color: white;
-}
-
-body
-{
-    /*background-image: url("maquette_background.png");*/
-    background-color: white;
-}
-
 main
 {
-    display: inline-block;
     margin: 0 auto;
     background-color: #3fb498;
 }
@@ -46,7 +56,6 @@ main
 
 h2
 {
-    color: white;
     text-align: center;
 }
 
@@ -57,6 +66,8 @@ a.previous
     border-radius: 6px;
     padding: 10px;
     margin:  15px 30px;
+    
+    width: 60%;
     
     color: #0a1223;
     text-align: center;
@@ -99,8 +110,14 @@ form
 
 form input
 {
+    color: black;
+}
+
+form input:not([type="checkbox"])
+{
     margin: 15px;
     padding: 10px 5px;
+    width: 75%;
     
     border-style: none;
     border-radius: 5px;
