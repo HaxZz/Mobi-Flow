@@ -1,0 +1,165 @@
+# Copying and distribution of this file, with or without modification,
+# are permitted in any medium without royalty provided this notice is
+# preserved.  This file is offered as-is, without any warranty.
+# Names of contributors must not be used to endorse or promote products
+# derived from this file without specific prior written permission.
+
+
+# Temp files
+*~
+*.bak
+*.backup
+\#*
+.\#*
+*\#
+*.swp
+*.swap
+*.sav
+*.save
+*.autosav
+*.autosave
+
+# Generated archives
+*.zip
+*.7z
+*.rar
+*.tar*
+*.tgz
+*.gz
+*.bz2
+*.bzip
+*.xz
+*.lz
+*.lzma
+*.iso
+*.a
+*.deb
+*.rpm
+*.apk
+*.exe
+*.msi
+*.dmg
+*.ipa
+*.jar
+
+# Generated binaries
+*.bin
+*.o
+*.obj
+*.elf
+*.lo
+*.ko
+*.so
+*.so.*
+*.dll
+*.dylib
+*.dynlib
+*.a
+*.la
+*.out
+*.output
+*.class
+*.pyc
+*.elc
+
+# Intermediate files of the compilation
+*.asm
+*.ihx
+*.lk
+*.lst
+*.map
+*.mem
+*.rel
+*.rst
+*.s
+*.sym
+
+# Generated folders
+obj/
+Obj/
+objects/
+bin/
+Bin/
+binaries/
+build/
+Build/
+release/
+Release/
+dbg/
+debug/
+Debug/
+__pycache__/
+META-INF/
+## Documentation
+doc/
+docs/
+documentation/
+Documentation/
+doc-html/
+
+# OS specific useless files
+thumbs.db
+Thumbs.db
+__MACOSX/
+__MAC_OS_X/
+__OSX/
+__OS_X/
+__WINDOWS/
+.DS_Store
+.directory
+
+# TeX and LaTeX useless files
+*.dvi
+*.aux
+*.nav
+*.toc
+*.fls
+*.snm
+*.vrm
+*.fdb_latexmk
+*.synctex
+*.synctex.gz
+*.synctex.bz2
+*.synctex.bzip
+*.synctex.xz
+*.synctex.zip
+*.synctex.rar
+*-converted-to.*
+
+# Integrated Development Environment
+## Qt Creator
+*.pro.user
+
+# Log
+*.log
+*.log.*
+error_log*
+log/
+logs/
+
+# Copy
+copy of *
+copie de *
+* - copy.*
+* - copie.*
+
+# Output results for testing and other tests
+a
+b
+c
+a.txt
+b.txt
+a.html
+b.html
+
+# Others
+*.*rc
+*.cache/
+*.thumbnails/
+*.bash*
+*.zsh*
+*.R*
+*.octave*
+*.xsession*
+*.less*
+octave_workspace*
