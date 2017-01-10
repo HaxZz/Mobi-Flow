@@ -1,0 +1,61 @@
+@charset "UTF-8";
+
+header
+{
+    display: block;
+    width: 100%;
+}
+
+header h1
+{
+    text-align: center;
+    color: white;
+}
+
+body
+{
+    /*background-image: url("maquette_background.png");*/
+    background-color: #4a5c7f;
+}
+
+a.next,
+a.previous
+{
+    display: inline-block;
+    border-radius: 6px;
+    padding: 10px;
+    margin:  15px 30px;
+    
+    color: white;
+    text-align: center;
+    
+    text-decoration: none;
+}
+
+a.next
+{
+    background-color: green;
+}
+
+a.previous
+{
+    background-color: blue;
+}
+
+ul.buttons
+{
+    list-style-type: none;
+    list-style-position: inside;
+    
+    margin:  0;
+    padding: 0;
+    
+    text-align: center;
+}
+
+ul.buttons,
+ul.buttons li
+{
+    list-style-type: none;
+    list-style-position: inside;
+}
