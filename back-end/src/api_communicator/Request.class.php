@@ -1,7 +1,6 @@
 <?php
 
-include_once('../route/Point.php');
-include_once('../route/Route.php');
+require_once("../kernel.inc.php");
 
 class Request {
 

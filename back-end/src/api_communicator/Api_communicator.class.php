@@ -1,7 +1,6 @@
 <?php
 
 require_once("../kernel.inc.php");
-include_once("Interface.php");
 
 class Api_communicator {
 

@@ -1,18 +1,6 @@
 <?php
 require_once("../kernel.inc.php");
 
-// $request = new Request("A","B");
-
-// $request->addTimeDeparture("12h");
-
-// $request->addTimEnd("17h");
-
-// $request->findPaths();
-
-// $request->toString();
-
-echo"\n\n";
-
 $chainJson = '{  "departure": "rue de villemenard 18390 Saint Germain du Puy France",
 				"arrival"  : "rue raoul néron 18390 Saint Germain du Puy France",
 				"datetime-departure" :
