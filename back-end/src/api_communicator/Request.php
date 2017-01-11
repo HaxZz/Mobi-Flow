@@ -1,14 +1,18 @@
 <?php
+
+include_once('../route/Point.php');
+include_once('../route/Route.php');
+
 class Request{
 
-	private $_departure;
-	private $_end;
+	private $_AdressDeparture;
+	private $_AdressEnd;
 	private $_timeDeparture;
 	private $_timEnd;
 
 	public function __construct($departure,$end){
-		$this->_departure = $departure;
-		$this->_end = $end;
+		$this->_AdressDeparture = $departure;
+		$this->_AdressEnd = $end;
 		$this->_timeDeparture = "";
 		$this->_timEnd = "";
 	}
@@ -22,16 +26,35 @@ class Request{
 	}
 
 	public function findPaths(){
-		// Recuperer les API potentiels pour la requete
-		
-		// Quel est l'objet à recevoir les parametrse ? -> cf route.php
-		// 
-		echo "methode findPaths pas fini";
+		$baseUrl = 'http://nominatim.openstreetmap.org/search?email=geliot@ensicaen.fr&format=json&limit=1';
+		$name = urlencode( $_AdressDeparture );
+		$data = file_get_contents( "{$baseUrl}&q={$name}" );
+		$json = json_decode( $data );
+
+		$longitudeDeparture = $json[0]->{'lon'};	
+		$latitudeDeparture = $json[0]->{'lat'};
+
+		$name = urlencode( $_AdressEnd );
+		$data = file_get_contents( "{$baseUrl}&q={$name}" );
+		$json = json_decode( $data );
+
+		$longitudeArrival = $json[0]->{'lon'};	
+		$latitudeArrival = $json[0]->{'lat'};
+
+		$pointDeparture = new Point($longitudeDeparture, $latitudeDeparture,$_AdressDeparture, $timeDeparture);
+		$pointArrival = new Point($longitudeArrival, $latitudeArrival,$_AdressArrival, $timeArrival);
+
+		$route = new Route();
+
+		$route->create($pointDeparture,$pointArrival);
+
+		//TODO
+
 	}
 
 	public function toString(){
-		echo $this->_departure."\n";
-		echo $this->_end."\n";
+		echo $this->_AdressDeparture."\n";
+		echo $this->_AdressEnd."\n";
 		echo $this->_timEnd."\n";
 		echo $this->_timeDeparture."\n";
 	}
