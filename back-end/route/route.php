@@ -1,6 +1,6 @@
 <?php
 
-require_once "class.Point.php";
+require_once "Point.php";
 
  /**
  *  @brief a route defines a travelling path from point A to a point B

@@ -1,6 +1,6 @@
 <?php
 
-	require_once "class.AbstractSegment.php";
+	require_once "../route/AbstractSegment.php";
 
 	/**
 	 * @brief Defines the behavior of any interface we will use to compute a route
