@@ -1,63 +1,146 @@
 <?php
 
-class User
+class UserService
 {
-	private $_login;
-	private $_password;
-
-	protected $_db;
-
-
-	public function __construct(PDO $db, $login, $password) 
+    /**
+     * @brief Connects to the database using the global variables
+     * @return PDO The object representing the connection
+     */
+    function connect()
     {
-       $this->_db = $db;
-       $this->_login = $login;
-       $this->_password = $password;
+        global $user, $pass;
+
+        return new PDO('mysql:host=localhost;dbname=mobiflow', $user, $pass);
     }
 
-	public function Sign_up($username, $email, $password)
-    {
-    	mysql_select_db("Database", $db) or die(mysql_error());
+	public function Sign_up($myJSON){
+        var myObj = JSON.parse(myJSON);
+        $username = myobj.username;
+        $email = myobj.email;
+        $password = myobj.password;
 
-    	$query = "SELECT * FROM `User` WHERE `username` = '$username'";
-		$result = mysql_query($query, $db) or die($query . " - " . mysql_error());
-		$nbResults = mysql_num_rows($result);
+        $_db = connect();
 
-        if( $nbResults != 0 ){
-        	$this->errors[] = 'Usename already registered';
-        	return false;
+    	$sql = "SELECT * FROM user WHERE username = $username";
+		$result = $this->_db->query($sql);
+        if( $res->fetchColumn() > 0 ){
+        	var myObj = { 'result':'fail', 'errors':'Username already registered' };
+            var myJSON = JSON.stringify(myObj);
+        }
+        
+
+        $sql = "SELECT * FROM User WHERE email_addr = $email";
+		$result = $this->_db->query($sql);
+        if( $result->fetchColumn() > 0 ){
+        	var myObj = { 'result':'fail', 'errors':'Email address already used' };
+            var myJSON = JSON.stringify(myObj);
         }
 
-        $query = "SELECT * FROM `User` WHERE `email_addr` = '$email'";
-		$result = mysql_query($query, $db) or die($query . " - " . mysql_error());
-		$nbResults = mysql_num_rows($result);
-
-        if( $nbResults != 0 ){
-        	$this->errors[] = 'Email address already used';
-        	return false;
-        }
 
         if( strlen($password) < 5 ){
-        	$this->errors[] = 'Password too short';
-        	return false;
+            var myObj = { 'result':'fail', 'errors':'Password too short' };
+            var myJSON = JSON.stringify(myObj);
         }
 
-        $query = "INSERT INTO User (username, email, password) VALUES ('$username', '$email', '$password')";
-        return mysql_query($query, $db) or die($query . " - " . mysql_error());
+        $sql = "INSERT INTO user (username, email_addr, password) VALUES ('$username', '$email', '$password')";
+        $this->_db->query($sql);
+
+        var myObj = { 'result':'ok' };
+        var myJSON = JSON.stringify(myObj);
+
+        return myJSON;   
     }
 
-    public function Sign_in($login, $password)
+    public function Sign_in($myJSON)
     {
-    	$query = "SELECT * FROM `User` WHERE `username` = '$login' OR `username` = '$login'";
+        var myObj = JSON.parse(myJSON);
+        $login = myobj.login;
+        $password = myobj.password;
 
+        $_db = connect();
+
+        $sql = "SELECT * FROM user WHERE username = $login OR email_addr = $login";
+        $result = $this->_db->query($sql);
+        if ($result->fetchColumn() > 0){
+            var myObj = { 'result':'ok' };
+            var myJSON = JSON.stringify(myObj);
+        }
+        else{
+            var myObj = { 'result':'fail' };
+            var myJSON = JSON.stringify(myObj);  
+        }
+        return myJSON;
     }
 
-
-
-
-    protected function _checkCredentials()
+    public function Modify_Password($myJSON)
     {
+        var myObj = JSON.parse(myJSON);
+        $id = myobj.id;
+        $new_pass = myobj.new_pass;
+        $pass = myobj.pass;
 
+        $_db = connect();
+
+        $sql = "SELECT * FROM user WHERE username-id = $id AND password = $pass";
+        $result = $this->_db->query($sql);
+        if( $result->fetchColumn() > 0 ){
+            $sql = "UPDATE user SET password='$new_pass' WHERE username-id=$id";
+            var myObj = { 'result':'ok' };
+            var myJSON = JSON.stringify(myObj);
+        }
+        else{
+            var myObj = { 'result': 'fail', 'errors':'Password not valid' };
+            var myJSON = JSON.stringify(myObj);
+        }
+        return myJSON;
     }
 
+    public function Modify_Username($myJSON)
+    {
+        var myObj = JSON.parse(myJSON);
+        $id = myobj.id;
+        $new_username = myobj.new_username;
+        $pass = myobj.pass;
+
+        $_db = connect();
+
+        $sql = "SELECT * FROM user WHERE username = $new_username";
+        $result = $this->_db->query($sql);
+        if( $result->fetchColumn() == 0 ){
+            $sql = "UPDATE user SET username='$new_username' WHERE username-id=$id";
+            $this->_db->query($sql);
+            var myObj = { 'result':'ok' };
+            var myJSON = JSON.stringify(myObj);
+        }
+        else{
+            var myObj = { 'result': 'fail', 'errors':'Username already used' };
+            var myJSON = JSON.stringify(myObj);
+        }
+
+        return myJSON;
+    }
+
+    public function Modify_Disabled($myJSON)
+    {
+        var myObj = JSON.parse(myJSON);
+        $id = myobj.id;
+        $disabled = myobj.disabled;
+        $pass = myobj.pass;
+
+        $_db = connect();
+        $sql = "SELECT * FROM user WHERE username-id=$id AND password = $pass";
+        $result = $this->_db->query($sql);
+        if( $result->fetchColumn() > 0 ){
+            $sql = "UPDATE user SET disabled='$disabled' WHERE username-id=$id";
+            $this->_db->query($sql);
+            var myObj = { 'result':'ok' };
+            var myJSON = JSON.stringify(myObj);
+        }
+        else{
+            var myObj = { 'result':'fail', 'errors':'Password not valid'};
+            var myJSON = JSON.stringify(myObj);
+        }
+
+        return myJSON;
+    }
 }
