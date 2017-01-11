@@ -22,6 +22,19 @@ $GLOBALS['absolute-path'] = realpath(dirname(__FILE__)) .'/';
 # To autoload - in fact include - a class that is not yet included
 function ClassLoad($class)
 {
-	require_once($GLOBALS['absolute-path'] .'/'. $class .'.class.php');
+    $class_paths = array('', 'api_communicator', 'carpark',
+                         'route', 'travel', 'users');
+    foreach($class_paths as $path)
+    {
+        if($path != '' && $path != '.')
+        {
+            $path .= '/';
+        }
+        $path = $GLOBALS['absolute-path'] .'/'. $path . $class .'.class.php';
+        if(file_exists($path))
+        {
+            require_once($path);
+        }
+    }
 }
 spl_autoload_register('ClassLoad');

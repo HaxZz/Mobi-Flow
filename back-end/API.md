@@ -82,6 +82,7 @@ Format: [JSON](https://en.wikipedia.org/wiki/JSON)
 ```
 {
 	'password'      : 'newpass',
+	'username-id'   : 3,
 	'password-check': 'pass'
 }
 ```
@@ -89,15 +90,16 @@ Format: [JSON](https://en.wikipedia.org/wiki/JSON)
 ```
 {
 	'username'      : 'toto2',
+	'username-id'   : 3,
 	'password-check': 'pass'
 }
 ```
 
 ```
 {
-	'username'      : 'toto2',
-	'username'      : 'toto2',
+	'username'      : 'toto3',
 	'disabled'      : 'true',
+	'username-id'   : 3,
 	'password-check': 'pass'
 }
 ```
@@ -138,7 +140,7 @@ Format: [JSON](https://en.wikipedia.org/wiki/JSON)
 {
 	'departure': 'ENSICAEN, site B, Caen 14000, France',
 	'arrival'  : 'Le Dome, Caen 14000, France',
-	'datetime' :
+	'datetime-departure':
 	{
 		'date':
 		{
@@ -159,7 +161,7 @@ Format: [JSON](https://en.wikipedia.org/wiki/JSON)
 {
 	'departure': 'ENSICAEN, site B, Caen 14000, France',
 	'arrival'  : 'Le Dome, Caen 14000, France',
-	'datetime' :
+	'datetime-arrival' :
 	{
 		'date':
 		{
@@ -181,7 +183,7 @@ Format: [JSON](https://en.wikipedia.org/wiki/JSON)
 {
 	'departure': 'ENSICAEN, site B, Caen 14000, France',
 	'arrival'  : 'Le Dome, Caen 14000, France',
-	'datetime' :
+	'datetime-departure' :
 	{
 		'date':
 		{

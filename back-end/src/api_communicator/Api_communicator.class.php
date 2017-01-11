@@ -22,14 +22,14 @@
 // 	}
 // }
 
-include_once("Interface.php");
+require_once("../kernel.inc.php");
 
-class Api_communicator implements ToRequest{
+class Api_communicator implements ToRequest {
 	private $_request;
 	private $_response;
 	private $_User;
 
-	public function __construct($JsonChain){
+	public function __construct($JsonChain) {
 		$chain = json_decode($JsonChain);
 
 		$adressDeparture = $chain->{'departure'};
@@ -38,27 +38,25 @@ class Api_communicator implements ToRequest{
 
 		$this->travel($adressDeparture, $adressArrival);
 	}
-
-	public function travel($adressDeparture, $adressArrival){
+    
+	public function travel($adressDeparture, $adressArrival) {
 		$this->_request = new Request($adressDeparture, $adressArrival);
 	}
 
-	public function timeDeparture($timeDeparture){
+	public function timeDeparture($timeDeparture) {
 		//TODO
 
 	}
 
-	public function timEnd($timEnd){
+	public function timEnd($timEnd) {
 		//TODO
 	}
 
-	public function findPaths(){
+	public function findPaths() {
 		$paths = $this->_request->findPaths();
-
-
 	}
 
-	public function toString(){
+	public function toString() {
 	 	echo $this->_request->toString();
 	}
 }
