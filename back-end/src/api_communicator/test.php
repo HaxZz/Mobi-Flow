@@ -59,3 +59,47 @@ $_POST['clef'] = '{  "departure": "bourges france",
 			}';
 
 include('data_front_end.php');
+
+echo "==========================";
+
+$_POST['clef'] = '{  "departure": "rue de sarrebourg bourges france",
+				"arrival"  : "boulevard du maréchal juin tours france",
+				"datetime-departure" :
+				{
+					"date":
+					{
+						"year" : "2017",
+						"month": "01",
+						"day"  : "20"
+					},
+					"time":
+					{
+						"hour"  : "18",
+						"minute": "44"
+					}
+				}
+			}';
+
+include('data_front_end.php');
+
+echo "==========================";
+
+$_POST['clef'] = '{  "departure": " 8 Rue de Sarrebourg, 18000 Bourges",
+				"arrival"  : "19 Rue Jean Girard, 18000 Bourges",
+				"datetime-departure" :
+				{
+					"date":
+					{
+						"year" : "2017",
+						"month": "01",
+						"day"  : "20"
+					},
+					"time":
+					{
+						"hour"  : "18",
+						"minute": "44"
+					}
+				}
+			}';
+
+include('data_front_end.php');
