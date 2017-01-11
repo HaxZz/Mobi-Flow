@@ -1,7 +1,6 @@
 <?php
 
 require_once "Point.php";
-
  /**
  *  @brief a route defines a travelling path from point A to a point B
  *        it is a combination of multiple travelling segments covered by
@@ -57,5 +56,3 @@ class Route
     	$this->segments = $api->computeRoute($this->beginning, $this->ending, $this->departureTime, $this->arrivalTime);
     }
 }
-
-?>
