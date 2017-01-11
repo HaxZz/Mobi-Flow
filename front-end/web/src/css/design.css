@@ -140,3 +140,8 @@ form input:not([type="submit"])
 {
     border-color: #ffce32;
 }
+
+#mapid 
+{
+    height: 180px; 
+}

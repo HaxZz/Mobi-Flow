@@ -15,6 +15,11 @@ class JSONConverter
         $json = "{\"begining\":{ \"longitude\":".$route->beginning->position->longitude.", \"latitude\":".$route->beginning->position->latitude."},
                 {\"ending\":{ \"longitude\":".$route->ending->position->longitude.", \"latitude\":".$route->beginning->position->longitude."},
                 {\"time\":".date("d/m/Y-HH:ii")."}}";
+        return $json;
     }
 
+    public static function JSONtoRoute($json){
+        $tab = json_decode($json);
+        $route = new Route();
+    }
 }

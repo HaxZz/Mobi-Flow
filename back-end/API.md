@@ -150,7 +150,7 @@ Format: [JSON](https://en.wikipedia.org/wiki/JSON)
 		},
 		'time':
 		{
-			'hour'  : '18'
+			'hour'  : '18',
 			'minute': '44'
 		}
 	}
@@ -171,7 +171,7 @@ Format: [JSON](https://en.wikipedia.org/wiki/JSON)
 		},
 		'time':
 		{
-			'hour'  : '18'
+			'hour'  : '18',
 			'minute': '44'
 		}
 	},
@@ -193,7 +193,7 @@ Format: [JSON](https://en.wikipedia.org/wiki/JSON)
 		},
 		'time':
 		{
-			'hour'  : '18'
+			'hour'  : '18',
 			'minute': '44'
 		}
 	},

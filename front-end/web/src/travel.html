@@ -17,6 +17,14 @@
 	  content="min-height: 240px, min-width:240px, max-width=device-width, user-scalable=yes" />
     <link rel="stylesheet" type="text/css" media="all"
 	  href="css/design.css" />
+    
+    <link rel="stylesheet" href="mapView/leaflet.css" />
+    <script src="mapView/leaflet.js"></script>
+    
+    <script type="text/javascript"
+	    src="js/form.js"></script>
+    <script type="text/javascript"
+	    src="js/travel_back-end.js"></script>
   </head>
   <body>
     <header>
@@ -28,21 +36,25 @@
       
       <form action="date.html">
 	<p>
-	  <input type="text" placeholder="Votre point de départ" />
+	  <input type="text" id="departure" placeholder="Votre point de départ" />
 	</p>
 	
 	<p>
-	  <input type="text" placeholder="Votre point d'arrivée" />
+	  <input type="text" id="arrival" placeholder="Votre point d'arrivée" />
+	</p>
+	
+	<script type="text/javascript" src="mapView/mapbox_id.js"></script>
+	<div id="mapid"></div>
+	<script type="text/javascript" src="mapView/travel_map.js"></script>
+	
+	<p>
+	  <label for="nb">Nombre de passager(s)</label>
+	  <input type="number" value="1" min="1" id="nb" />
 	</p>
 	
 	<p>
-	  <label>Nombre de passager(s)</label>
-	  <input type="number" value="1" min="1" />
-	</p>
-	
-	<p>
-	  <input type="checkbox" />
-	  <label>Acceptation de passager(s) tiers</label>
+	  <input type="checkbox" id="third-parties" />
+	  <label for="third-parties">Acceptation de passager(s) tiers</label>
 	</p>
 	
 	<input type="submit" value="Suivant" class="btn btn-default" />
