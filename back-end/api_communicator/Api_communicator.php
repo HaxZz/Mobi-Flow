@@ -24,7 +24,7 @@
 
 include_once("Interface.php");
 
-class Api_communicator implements ToRequest, ToResponse{
+class Api_communicator implements ToRequest{
 	private $_request;
 	private $_response;
 	private $_User;
