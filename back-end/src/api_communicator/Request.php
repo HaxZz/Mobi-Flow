@@ -3,7 +3,7 @@
 include_once('../route/Point.php');
 include_once('../route/Route.php');
 
-class Request{
+class Request {
 
 	private $_AdressDeparture;
 	private $_AdressEnd;

@@ -1,5 +1,6 @@
 <?php
-require_once "Segment.php";
+require_once("Segment.php");
+
 abstract class PublicTransportSegment extends Segment
 {
     protected $line;
