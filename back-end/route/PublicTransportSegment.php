@@ -1,11 +1,5 @@
 <?php
-
-/**
- * Created by IntelliJ IDEA.
- * User: pierre
- * Date: 11/01/17
- * Time: 14:14
- */
+require_once "Segment.php";
 class PublicTransportSegment extends Segment
 {
 
