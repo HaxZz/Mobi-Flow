@@ -1,6 +1,6 @@
 <?php
-require_once("Car.php");
-require_once ("../route/AutonomousCarSegment.php");
+require_once("../kernel.inc.php");
+require_once("../route/AutonomousCarSegment.php");
 
 class CarManagement
 {
@@ -23,4 +23,8 @@ class CarManagement
         return null;
     }
 
+    public function addCar(Car $car)
+    {
+        $this->cars[] = $car;
+    }
 }

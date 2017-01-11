@@ -1,13 +1,15 @@
 <?php
 
+require_once("../kernel.inc.php");
 include_once("Interface.php");
 
 class Api_communicator {
+
 	private $_request;
 	private $_response;
 	private $_User;
 
-	public function __construct($JsonChain){
+	public function __construct($JsonChain) {
 		$chain = json_decode($JsonChain);
 
 		$adressDeparture = $chain->{'departure'};
@@ -28,8 +30,8 @@ class Api_communicator {
 		$this->_request->addTimEnd($arrivalTime);
 
 	}
-
-	public function findPaths(){
+	
+	public function findPaths() {
 		$paths = $this->_request->findPaths();
 
 		if(empty($paths)){
@@ -43,7 +45,7 @@ class Api_communicator {
 		}
 	}
 
-	public function toString(){
+	public function toString() {
 	 	echo $this->_request->toString();
 	}
 }

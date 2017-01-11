@@ -1,5 +1,5 @@
 <?php
-require_once("Point.php");
+require_once("../kernel.inc.php");
 
 /**
  * @brief An Abstract Segment is a small route using one Transportation mean 

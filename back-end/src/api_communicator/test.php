@@ -1,6 +1,5 @@
 <?php
-include_once('Request.php');
-include_once('Api_communicator.php');
+require_once("../kernel.inc.php");
 
 // $request = new Request("A","B");
 
