@@ -11,6 +11,8 @@
     <link rel="stylesheet"
 	  href="bootstrap/css/bootstrap-theme.min.css">
     <script type="text/javascript"
+	    src="jquery/jquery_3-1.js"></script>
+    <script type="text/javascript"
 	    src="bootstrap/js/bootstrap.min.js"></script>
     
     <meta name="viewport"
@@ -22,9 +24,14 @@
     <script src="mapView/leaflet.js"></script>
     
     <script type="text/javascript"
+	    src="js/XMLHttpRequest.js"></script>
+    <script type="text/javascript"
 	    src="js/form.js"></script>
     <script type="text/javascript"
 	    src="js/travel_back-end.js"></script>
+    
+    <script type="text/javascript" src="mapView/mapbox_id.js"></script>
+    <script type="text/javascript" src="mapView/travel_map.js"></script>
   </head>
   <body>
     <header>
@@ -33,6 +40,8 @@
     
     <main>
       <h2>Définissez votre trajet</h2>
+      
+      <div id="errors"></div>
       
       <form action="date.html">
 	<p>
@@ -43,9 +52,7 @@
 	  <input type="text" id="arrival" placeholder="Votre point d'arrivée" />
 	</p>
 	
-	<script type="text/javascript" src="mapView/mapbox_id.js"></script>
-	<div id="mapid"></div>
-	<script type="text/javascript" src="mapView/travel_map.js"></script>
+	<div id="map"></div>
 	
 	<p>
 	  <label for="nb">Nombre de passager(s)</label>
