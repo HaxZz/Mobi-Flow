@@ -1,6 +1,6 @@
 <?php
 require_once "Segment.php";
-class PublicTransportSegment extends Segment
+abstract class PublicTransportSegment extends Segment
 {
     protected $line;
     protected $direction;
@@ -15,6 +15,11 @@ class PublicTransportSegment extends Segment
     public function __get($name)
     {
         return $this->$name;
+    }
+
+    public function toJson(){
+		$str = parent::toJson();
+		return $str . "'line' : '$line', 'direction' : '$direction', 'beginningStop' : '$beginningStop', 'endingStop' : '$endingStop', ";
     }
 
 }

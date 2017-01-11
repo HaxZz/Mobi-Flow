@@ -37,6 +37,11 @@ abstract class Segment
         return $this->$name;
     }
 
+    public function toJson(){
+        return "{ 'beginningPosition : '$beginningPosition', 'endingPosition' : '$endingPosition',"
+            . "'beginningTime' : '$beginningTime', 'endingTime' : '$endingTime',";
+    }
+
 }
 
 ?>
