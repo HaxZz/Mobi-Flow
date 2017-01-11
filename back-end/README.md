@@ -9,4 +9,8 @@
 - git (optionnal, for the history of the project)
 
 On Debian, Trisquel, or Ubuntu:
-`apt-get install apache2 php5 php5-json php5-odbc php5-mysql mariadb-server`
+
+- For PHP 5 with MariaDB:
+  `apt-get install apache2 php5 php5-json php5-odbc php5-mysql mariadb-server`
+- For PHP 7 with MariaDB:
+  `apt-get install apache2 php7.0 php7.0-json php7.0-odbc php7.0-mysql mariadb-server`
