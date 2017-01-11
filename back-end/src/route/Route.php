@@ -1,7 +1,7 @@
 <?php
 
-require_once "Point.php";
- /**
+require_once("Point.php");
+/**
  *  @brief a route defines a travelling path from point A to a point B
  *        it is a combination of multiple travelling segments covered by
  *        different transporting means
@@ -55,4 +55,15 @@ class Route
     {
     	$this->segments = $api->computeRoute($this->beginning, $this->ending, $this->departureTime, $this->arrivalTime);
     }
+
+    public function __set($name, $value)
+    {
+        $this->$name = $value;
+    }
+
+    public function __get($name)
+    {
+        return $this->$name;
+    }
+
 }

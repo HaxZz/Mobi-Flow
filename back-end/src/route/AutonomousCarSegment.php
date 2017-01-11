@@ -1,8 +1,8 @@
 <?php
-require_once "Segment.php";
+require_once("Segment.php");
+
 class AutonomousCarSegment extends Segment
 {
-
     public function __set($name, $value)
     {
         $this->$name = $value;
@@ -12,5 +12,4 @@ class AutonomousCarSegment extends Segment
     {
         return $this->$name;
     }
-
 }

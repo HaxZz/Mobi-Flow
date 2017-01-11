@@ -32,15 +32,15 @@ class Api_communicator implements ToRequest{
 	public function __construct($JsonChain){
 		$chain = json_decode($JsonChain);
 
-		$departure = $chain->{'departure'};
+		$adressDeparture = $chain->{'departure'};
 		
-		$arrival = $chain->{'arrival'};
+		$adressArrival = $chain->{'arrival'};
 
-		$this->travel($departure, $arrival);
+		$this->travel($adressDeparture, $adressArrival);
 	}
 
-	public function travel($departure, $arrival){
-		$this->_request = new Request($departure, $arrival);
+	public function travel($adressDeparture, $adressArrival){
+		$this->_request = new Request($adressDeparture, $adressArrival);
 	}
 
 	public function timeDeparture($timeDeparture){
@@ -78,4 +78,3 @@ class Api_communicator implements ToRequest{
 // 		]
 // 	}
 // }
-

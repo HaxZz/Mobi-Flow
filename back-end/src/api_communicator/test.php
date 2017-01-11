@@ -1,22 +1,22 @@
 <?php
-	include_once('Request.php');
-	include_once('Api_communicator.php');
+include_once('Request.php');
+include_once('Api_communicator.php');
 
-	echo "avant instanciation\n";
+echo "avant instanciation\n";
 
-	// $request = new Request("A","B");
+// $request = new Request("A","B");
 
-	// $request->addTimeDeparture("12h");
+// $request->addTimeDeparture("12h");
 
-	// $request->addTimEnd("17h");
+// $request->addTimEnd("17h");
 
-	// $request->findPaths();
+// $request->findPaths();
 
-	// $request->toString();
+// $request->toString();
 
-	echo"\n\n";
+echo"\n\n";
 
-	$chainJson = '{  "departure": "ENSICAEN, site B, Caen 14000, France",
+$chainJson = '{  "departure": "ENSICAEN, site B, Caen 14000, France",
 				"arrival"  : "Le Dome, Caen 14000, France",
 				"datetime" :
 				{
@@ -34,18 +34,16 @@
 				}
 			}';
 
-	$api = new Api_communicator($chainJson);
+$api = new Api_communicator($chainJson);
 
-	$api->toString();
+$api->toString();
 
-	$baseUrl = 'http://nominatim.openstreetmap.org/search?email=geliot@ensicaen.fr&format=json&limit=1';
-	$name = urlencode( 'Addison, TX, US' );
-	$data = file_get_contents( "{$baseUrl}&q={$name}" );
-	$json = json_decode( $data );
+$baseUrl = 'http://nominatim.openstreetmap.org/search?email=geliot@ensicaen.fr&format=json&limit=1';
+$name = urlencode( 'Addison, TX, US' );
+$data = file_get_contents( "{$baseUrl}&q={$name}" );
+$json = json_decode( $data );
 
-	var_dump( $json[0] );
-	var_dump( $json[0]->{'lon'} );	
+var_dump( $json[0] );
+var_dump( $json[0]->{'lon'} );	
 	
-	// echo "apres instanciation\n";
-
-?>
+// echo "apres instanciation\n";

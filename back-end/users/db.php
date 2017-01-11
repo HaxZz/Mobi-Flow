@@ -23,7 +23,9 @@
 	{
 		$pdo = connect();
 
-		$sql = "INSERT INTO mabite";
+		$username = 'toto'; //$user->username
+
+		$sql = "SELECT username FROM user WHERE username ='" . $username ."'";
 
 		$pdo = null;
 	}

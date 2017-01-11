@@ -1,5 +1,5 @@
 <?php
-require_once "Point.php";
+require_once("Point.php");
 
 /**
  * @brief An Abstract Segment is a small route using one Transportation mean 
@@ -7,10 +7,13 @@ require_once "Point.php";
  */
 abstract class Segment
 {
-
+    protected $beginning;
     protected $beginningTime;
-    protected $endingTime;
     protected $beginningPosition;
+
+
+    protected $endingTime;
+
     protected $endingPosition;
 
     protected $pathPositions;
@@ -19,7 +22,7 @@ abstract class Segment
      * @brief the Beginning location of the segment
      * @var Point
      */
-    protected $beginning;
+
     
     /**
      * @brief The ending location of the segment
@@ -43,5 +46,3 @@ abstract class Segment
     }
 
 }
-
-?>
