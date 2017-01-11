@@ -57,5 +57,3 @@ class Route
     	$this->segments = $api->computeRoute($this->beginning, $this->ending, $this->departureTime, $this->arrivalTime);
     }
 }
-
-?>

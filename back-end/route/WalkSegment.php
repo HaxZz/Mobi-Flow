@@ -1,6 +1,6 @@
 <?php
 
-class WalkSegment extends AbstractSegment
+class WalkSegment extends PublicTransportSegment
 {
 
 }

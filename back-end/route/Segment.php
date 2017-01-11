@@ -5,7 +5,7 @@ require_once "Point.php";
  * @brief An Abstract Segment is a small route using one Transportation mean 
  *        such as a Bus or a car
  */
-abstract class AbstractSegment
+abstract class Segment
 {
     /**
      * @brief the Beginning location of the segment
@@ -55,3 +55,5 @@ abstract class AbstractSegment
         $this->ending = $ending;
     }
 }
+
+?>

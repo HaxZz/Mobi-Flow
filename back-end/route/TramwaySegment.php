@@ -1,6 +1,6 @@
 <?php
 
-class TramwaySegment extends AbstractSegment
+class TramwaySegment extends PublicTransportSegment
 {
 
 }
