@@ -1,6 +1,6 @@
 <?php
-
-class BusSegment extends AbstractSegment
+require_once "PublicTransportSegment.php";
+class BusSegment extends PublicTransportSegment
 {
 
 }

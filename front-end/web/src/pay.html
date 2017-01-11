@@ -2,7 +2,6 @@
 <html>
   <head>
     <meta charset="utf-8" />
-    <title>Trajet - Mobi'Flow</title>
     
     <meta name="robots" content="index, follow" />
     
@@ -16,37 +15,25 @@
     <meta name="viewport"
 	  content="min-height: 240px, min-width:240px, max-width=device-width, user-scalable=yes" />
     <link rel="stylesheet" type="text/css" media="all"
-	  href="maquette.css"/>
+	  href="css/design.css" />
+    
+    <title>Payez - Mobi'Flow</title>
   </head>
   <body>
     <header>
-      <img src="logo.svg" />
+      <h1><img src="img/logo.svg" alt="Mobi'Flow" /></h1>
     </header>
     
     <main>
-      <h2>Définissez votre trajet</h2>
+      <h2>Payez</h2>
       
-      <form action="date.html">
-	<p>
-	  <input type="text" placeholder="Votre point de départ" />
-	</p>
-	
-	<p>
-	  <input type="text" placeholder="Votre point d'arrivée" />
-	</p>
-	
-	<p>
-	  <label>Nombre de passager(s)</label>
-	  <input type="number" value="1" min="1" />
-	</p>
-	
-	<p>
-	  <input type="checkbox" />
-	  <label>Acceptation de passager(s) tiers</label>
-	</p>
-	
-	<input type="submit" value="Suivant" class="btn btn-default" />
-      </form>
+      <p>
+	<label>Numéro de CB</label>
+	<input type="number" />
+      </p>
+      
+      <a class="btn next" href="success.html">Mobi'Flow !</a>
+      <a class="btn previous" href="date.html">Retour</a>
     </main>
   </body>
 </html>

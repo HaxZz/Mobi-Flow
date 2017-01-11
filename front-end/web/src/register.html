@@ -2,8 +2,7 @@
 <html>
   <head>
     <meta charset="utf-8" />
-    
-    <meta name="robots" content="index, follow" />
+    <title>Enregistrement - Mobi'Flow</title>
     
     <link rel="stylesheet"
 	  href="bootstrap/css/bootstrap.min.css" />
@@ -15,22 +14,25 @@
     <meta name="viewport"
 	  content="min-height: 240px, min-width:240px, max-width=device-width, user-scalable=yes" />
     <link rel="stylesheet" type="text/css" media="all"
-	  href="maquette.css"/>
+	  href="css/design.css" />
     
-    <title>Mobi'Flow</title>
+    <meta name="robots" content="index, follow" />
   </head>
   <body>
     <header>
-      <img src="logo.svg" alt="Mobi'Flow" />
+      <h1><img src="img/logo.svg" alt="Mobi'Flow" /></h1>
     </header>
     
     <main>
-      <!--<h2>Accueil</h2>-->
+      <h2>Enregistrement</h2>
       
-      <ul class="buttons">
-	<li><a class="btn next" href="login.html">S'identifier</a></li>
-	<li><a class="btn next" href="register.html">S'enregistrer</a></li>
-      </ul>
+      <form>
+	<input type="text" placeholder="Identifiant" />
+	<br />
+	<input type="text" placeholder="Mot de passe" />
+	<br />
+	<input type="submit" class="btn" />
+      </form>
     </main>
   </body>
 </html>
