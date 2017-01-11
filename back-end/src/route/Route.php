@@ -55,4 +55,15 @@ class Route
     {
     	$this->segments = $api->computeRoute($this->beginning, $this->ending, $this->departureTime, $this->arrivalTime);
     }
+
+    public function __set($name, $value)
+    {
+        $this->$name = $value;
+    }
+
+    public function __get($name)
+    {
+        return $this->$name;
+    }
+
 }
