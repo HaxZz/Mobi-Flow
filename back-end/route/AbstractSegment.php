@@ -1,5 +1,9 @@
 <?php
-include "class.Point.php";
+require_once "Point.php";
+
+/**
+ * @brief 
+ */
 abstract class AbstractSegment
 {
     protected $beginning;
