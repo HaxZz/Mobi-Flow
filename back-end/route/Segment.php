@@ -7,6 +7,14 @@ require_once "Point.php";
  */
 abstract class Segment
 {
+
+    protected $beginningTime;
+    protected $endingTime;
+    protected $beginningPosition;
+    protected $endingPosition;
+
+    protected $pathPositions;
+
     /**
      * @brief the Beginning location of the segment
      * @var Point
@@ -19,41 +27,16 @@ abstract class Segment
      */
     protected $ending;
 
-    /**
-     * @brief Getter beginning point
-     * @return Point THe beginning point of the segment
-     */
-    public function getBeginning()
+    public function __set($name, $value)
     {
-        return $this->beginning;
+        $this->$name = $value;
     }
 
-    /**
-     * @brief Setter beginning point
-     * @param Point $beginning The new beginning point
-     */
-    public function setBeginning(Point $beginning)
+    public function __get($name)
     {
-        $this->beginning = $beginning;
+        return $this->$name;
     }
 
-    /**
-     * @brief Getter of the ending point
-     * @return Point The ending point of the segment
-     */
-    public function getEnding()
-    {
-        return $this->ending;
-    }
-
-    /**
-     * @brief Setter for the ending point
-     * @param Point $ending The new end point of the segment
-     */
-    public function setEnding(Point $ending) 
-    {
-        $this->ending = $ending;
-    }
 }
 
 ?>
