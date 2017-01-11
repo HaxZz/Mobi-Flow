@@ -17,6 +17,9 @@
 	  content="min-height: 240px, min-width:240px, max-width=device-width, user-scalable=yes" />
     <link rel="stylesheet" type="text/css" media="all"
 	  href="css/design.css" />
+
+	 <link rel="stylesheet" href="mapView/leaflet.css" />
+	 <script src="mapView/leaflet.js"></script>
   </head>
   <body>
     <header>
@@ -25,7 +28,7 @@
     
     <main>
       <h2>Définissez votre trajet</h2>
-      
+
       <form action="date.html">
 	<p>
 	  <input type="text" placeholder="Votre point de départ" />
@@ -35,6 +38,10 @@
 	  <input type="text" placeholder="Votre point d'arrivée" />
 	</p>
 	
+	  <script src="mapView/mapbox_id.js"></script>
+      <div id="mapid"></div>
+      <script src="mapView/travel_map.js"></script>
+
 	<p>
 	  <label>Nombre de passager(s)</label>
 	  <input type="number" value="1" min="1" />

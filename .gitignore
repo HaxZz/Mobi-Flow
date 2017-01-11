@@ -165,3 +165,6 @@ b.html
 *.xsession*
 *.less*
 octave_workspace*
+
+# NO ID's In the repo
+front-end/web/src/mapView/mapbox_id.js
