@@ -9,7 +9,7 @@ class Route
 {
 	/**
 	 * @brief a collection of segments
-	 * @var A collection (List?)
+	 * @var An array
 	 */
 	private $segments;
 
@@ -18,7 +18,7 @@ class Route
 	 */
 	public function __construct() 
 	{
-        
+        $this->segments = array();
     }
 
     /**
@@ -28,7 +28,7 @@ class Route
      */
     public function createFromAPI($api)
     {
-
+    	
     }
 }
 
