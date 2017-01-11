@@ -37,7 +37,15 @@
 	$api = new Api_communicator($chainJson);
 
 	$api->toString();
+
+	$baseUrl = 'http://nominatim.openstreetmap.org/search?email=geliot@ensicaen.fr&format=json&limit=1';
+	$name = urlencode( 'Addison, TX, US' );
+	$data = file_get_contents( "{$baseUrl}&q={$name}" );
+	$json = json_decode( $data );
+
+	var_dump( $json[0] );
+	var_dump( $json[0]->{'lon'} );	
 	
-	echo "apres instanciation\n";
+	// echo "apres instanciation\n";
 
 ?>

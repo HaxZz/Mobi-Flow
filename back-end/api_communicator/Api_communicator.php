@@ -44,23 +44,38 @@ class Api_communicator implements ToRequest{
 	}
 
 	public function timeDeparture($timeDeparture){
+		//TODO
 
 	}
 
-	public function timEnd($timEnd){}
+	public function timEnd($timEnd){
+		//TODO
+	}
 
-	public function Itineraries(){} 
-
-	// public function findPaths(){
-	// 	$this->_response = new Response( $this->_request->findPaths() );
+	public function findPaths(){
+		$paths = $this->_request->findPaths();
 
 
-	// }
+	}
 
 	public function toString(){
 	 	echo $this->_request->toString();
-	// 	// echo $this->_response->toString() + "\n";
 	}
 }
 
-?>
+// {
+// 	'travels':
+// 	{
+// 		[
+// 			{
+// 				'???',
+// 				disabled-friendly: 'true'
+// 			},
+// 			{
+// 				'???',
+// 				disabled-friendly: 'false'
+// 			}
+// 		]
+// 	}
+// }
+

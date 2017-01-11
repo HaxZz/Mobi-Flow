@@ -6,5 +6,6 @@ interface ToRequest{
 	public function timeDeparture($datetimeDeparture);
 
 	public function timEnd($datetimEnd);
+
+	public function findPaths();
 }
-?>
