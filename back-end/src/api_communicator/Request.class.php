@@ -25,17 +25,19 @@ class Request {
 	public function findPaths(){
 		$baseUrl = 'http://nominatim.openstreetmap.org/search?email=geliot@ensicaen.fr&format=json&limit=1';
 		$name = urlencode( $this->_AdressDeparture );
+		echo "{$baseUrl}&q={$name}";
 		$data = file_get_contents( "{$baseUrl}&q={$name}" );
 		$json = json_decode( $data );
 
 		if(empty($json)){
+			var_dump($json);
 			return NULL;
 		}
 
 		$longitudeDeparture = $json[0]->{'lon'};	
 		$latitudeDeparture = $json[0]->{'lat'};
 
-		$name = urlencode( $_AdressEnd );
+		$name = urlencode( $this->_AdressEnd );
 		$data = file_get_contents( "{$baseUrl}&q={$name}" );
 		$json = json_decode( $data );
 
@@ -46,14 +48,18 @@ class Request {
 		$longitudeArrival = $json[0]->{'lon'};	
 		$latitudeArrival = $json[0]->{'lat'};
 
-		$pointDeparture = new Point($longitudeDeparture, $latitudeDeparture,$_AdressDeparture, $timeDeparture);
-		$pointArrival = new Point($longitudeArrival, $latitudeArrival,$_AdressArrival, $timeArrival);
+		$pointDeparture = new Point($longitudeDeparture, $latitudeDeparture,$this->_AdressDeparture, $this->_timeDeparture);
+		$pointArrival = new Point($longitudeArrival, $latitudeArrival,$this->_AdressEnd, $this->_timEnd);
 
 		$route = new Route();
 
 		$route->create($pointDeparture,$pointArrival);
 			
 
+	}
+
+	public function toJSON(){
+		//TODO
 	}
 
 	public function toString(){

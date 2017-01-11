@@ -35,9 +35,7 @@ class Api_communicator {
 
 		if(empty($paths)){
 			$chain ='{"travels" : "Indeterminate"}';
-			$json = json_encode($chain);
-			return NULL;
-
+			return $chain;
 		}
 		else{
 			//TODO
