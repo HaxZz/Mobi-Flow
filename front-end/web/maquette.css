@@ -7,6 +7,12 @@
     src: url("fonts/dustismo.ttf");
 }
 
+@font-face
+{
+    font-family: Dustismo;
+    src: url("fonts/dustismo_bold.ttf");
+}
+
 
 *
 {
@@ -16,7 +22,6 @@
 
 body
 {
-    /*background-image: url("maquette_background.png");*/
     background-color: white;
     margin: 20px;
 }
