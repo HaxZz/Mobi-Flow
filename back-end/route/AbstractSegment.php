@@ -10,7 +10,7 @@ abstract class AbstractSegment
         return $this->beginning;
     }
 
-    public function setBeginning($beginning)
+    public function setBeginning(Point $beginning)
     {
         $this->beginning = $beginning;
     }
@@ -20,7 +20,7 @@ abstract class AbstractSegment
         return $this->ending;
     }
 
-    public function setEnding($ending) {
+    public function setEnding(Point $ending) {
         $this->ending = $ending;
     }
 
