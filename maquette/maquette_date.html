@@ -2,12 +2,6 @@
 <html>
   <head>
     <meta charset="utf-8" />
-    <title>Date - Mobi'Flow</title>
-    
-    <meta name="viewport"
-	  content="min-height: 240px, min-width:240px, max-width=device-width, user-scalable=yes" />
-    <link rel="stylesheet" type="text/css" media="all"
-	  href="maquette.css"/>
     
     <meta name="robots" content="index, follow" />
     
@@ -17,10 +11,24 @@
     <script type="text/javascript" src="jquery-ui.js"></script>
     <script type="text/javascript" src="modernizr.js"></script>
     <script type="text/javascript" src="datetime-local-polyfill.js"></script>
+    
+    <link rel="stylesheet"
+	  href="bootstrap/css/bootstrap.min.css" />
+    <link rel="stylesheet"
+	  href="bootstrap/css/bootstrap-theme.min.css">
+    <script type="text/javascript"
+	    src="bootstrap/js/bootstrap.min.js"></script>
+    
+    <meta name="viewport"
+	  content="min-height: 240px, min-width:240px, max-width=device-width, user-scalable=yes" />
+    <link rel="stylesheet" type="text/css" media="all"
+	  href="maquette.css"/>
+    
+    <title>Date - Mobi'Flow</title>
   </head>
   <body>
     <header>
-      <h1>Mobi'Flow</h1>
+      <img src="logo.svg" alt="Mobi'Flow" />
     </header>
     
     <main>
@@ -30,17 +38,20 @@
 	<li>De lieu1 vers lieu2
       </ul>
       
-      <p>
-	<label>Date</label>
-	<input type="datetime-local" />
-      </p>
-      
-      <ul class="buttons">
-	<li><a class="next" href="maquette_pay.html">Aujourd'hui, 15h</a></li>
-	<li><a class="next" href="maquette_pay.html">Demain, 8h</a></li>
-      </ul>
-      
-      <a href="maquette_travel.html" class="previous">Retour</a>
+      <form>
+	<p>
+	  <label>Date</label>
+	  <input type="datetime-local" />
+	  <!-- TODO multiple inputs? no polyfill and easier for backend -->
+	</p>
+	
+	<ul class="buttons">
+	  <li><a class="btn next" href="maquette_ok.html">Aujourd'hui, 15h</a></li>
+	  <li><a class="btn next" href="maquette_ok.html">Demain, 8h</a></li>
+	</ul>
+	
+	<a class="btn previous" href="maquette_travel.html">Retour</a>
+      </form>
     </main>
   </body>
 </html>
