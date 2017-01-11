@@ -13,8 +13,6 @@ class Request {
 	public function __construct($departure,$end){
 		$this->_AdressDeparture = $departure;
 		$this->_AdressEnd = $end;
-		$this->_timeDeparture = "";
-		$this->_timEnd = "";
 	}
 
 	public function addTimeDeparture($timeDeparture){
@@ -27,9 +25,13 @@ class Request {
 
 	public function findPaths(){
 		$baseUrl = 'http://nominatim.openstreetmap.org/search?email=geliot@ensicaen.fr&format=json&limit=1';
-		$name = urlencode( $_AdressDeparture );
+		$name = urlencode( $this->_AdressDeparture );
 		$data = file_get_contents( "{$baseUrl}&q={$name}" );
 		$json = json_decode( $data );
+
+		if(empty($json)){
+			return NULL;
+		}
 
 		$longitudeDeparture = $json[0]->{'lon'};	
 		$latitudeDeparture = $json[0]->{'lat'};
@@ -37,6 +39,10 @@ class Request {
 		$name = urlencode( $_AdressEnd );
 		$data = file_get_contents( "{$baseUrl}&q={$name}" );
 		$json = json_decode( $data );
+
+		if(empty($json)){
+			return NULL;
+		}
 
 		$longitudeArrival = $json[0]->{'lon'};	
 		$latitudeArrival = $json[0]->{'lat'};
@@ -47,8 +53,7 @@ class Request {
 		$route = new Route();
 
 		$route->create($pointDeparture,$pointArrival);
-
-		//TODO
+			
 
 	}
 

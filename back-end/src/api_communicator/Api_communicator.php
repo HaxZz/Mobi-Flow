@@ -1,30 +1,8 @@
 <?php
 
-### Input
-
-// ```
-// {
-// 	'departure': 'ENSICAEN, site B, Caen 14000, France',
-// 	'arrival'  : 'Le Dome, Caen 14000, France',
-// 	'datetime' :
-// 	{
-// 		'date':
-// 		{
-// 			'year' : '2017',
-// 			'month': '01',
-// 			'day'  : '20'
-// 		},
-// 		'time':
-// 		{
-// 			'hour'  : '18'
-// 			'minute': '44'
-// 		}
-// 	}
-// }
-
 include_once("Interface.php");
 
-class Api_communicator implements ToRequest{
+class Api_communicator {
 	private $_request;
 	private $_response;
 	private $_User;
@@ -36,26 +14,33 @@ class Api_communicator implements ToRequest{
 		
 		$adressArrival = $chain->{'arrival'};
 
-		$this->travel($adressDeparture, $adressArrival);
-	}
-
-	public function travel($adressDeparture, $adressArrival){
 		$this->_request = new Request($adressDeparture, $adressArrival);
-	}
 
-	public function timeDeparture($timeDeparture){
-		//TODO
+		$date = $chain->{'datetime-departure'}->{'date'};
 
-	}
+		$time = $chain->{'datetime-departure'}->{'time'};
 
-	public function timEnd($timEnd){
-		//TODO
+		$departureTime =  $date->{'day'}."/".$date->{'month'}."/".$date->{'year'}."-".$time->{'hour'}.":".$time->{'minute'};
+
+		$arrivalTime = "00/00/0000-00:00";
+
+		$this->_request->addTimeDeparture($departureTime);
+		$this->_request->addTimEnd($arrivalTime);
+
 	}
 
 	public function findPaths(){
 		$paths = $this->_request->findPaths();
 
+		if(empty($paths)){
+			$chain ='{"travels" : "Indeterminate"}';
+			$json = json_encode($chain);
+			return NULL;
 
+		}
+		else{
+			//TODO
+		}
 	}
 
 	public function toString(){
@@ -63,18 +48,3 @@ class Api_communicator implements ToRequest{
 	}
 }
 
-// {
-// 	'travels':
-// 	{
-// 		[
-// 			{
-// 				'???',
-// 				disabled-friendly: 'true'
-// 			},
-// 			{
-// 				'???',
-// 				disabled-friendly: 'false'
-// 			}
-// 		]
-// 	}
-// }
