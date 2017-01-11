@@ -1,5 +1,6 @@
 <?php
-require_once "PublicTransportSegment.php";
+require_once("PublicTransportSegment.php");
+
 class BusSegment extends PublicTransportSegment
 {
 	public function toJson(){

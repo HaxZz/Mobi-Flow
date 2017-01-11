@@ -1,5 +1,5 @@
 <?php
-class Request{
+class Request {
 
 	private $_departure;
 	private $_end;
@@ -37,4 +37,3 @@ class Request{
 	}
 
 }
-?>

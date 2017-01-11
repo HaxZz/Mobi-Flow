@@ -62,5 +62,3 @@ class Api_communicator implements ToRequest{
 	// 	// echo $this->_response->toString() + "\n";
 	}
 }
-
-?>

@@ -1,5 +1,5 @@
 <?php
-require_once "Point.php";
+require_once("Point.php");
 
 /**
  * @brief An Abstract Segment is a small route using one Transportation mean 
@@ -43,5 +43,3 @@ abstract class Segment
     }
 
 }
-
-?>
