@@ -9,6 +9,9 @@ class Request {
 	private $_timeDeparture;
 	private $_timEnd;
 
+	private $_User;
+
+	
 	public function __construct($departure,$end){
 		$this->_AdressDeparture = $departure;
 		$this->_AdressEnd = $end;
@@ -51,16 +54,19 @@ class Request {
 		$pointDeparture = new Point($longitudeDeparture, $latitudeDeparture,$this->_AdressDeparture, $this->_timeDeparture);
 		$pointArrival = new Point($longitudeArrival, $latitudeArrival,$this->_AdressEnd, $this->_timEnd);
 
-		$route = new Route();
+		echo "--------------------";
 
-		$route->create($pointDeparture,$pointArrival);
-			
+		$pointDeparture->toString();
+		echo "--------------------";
 
+		$pointArrival->toString();
+		echo "--------------------";
+
+		// $route = new Route();
+
+		// $route->create($pointDeparture,$pointArrival);
 	}
 
-	public function toJSON(){
-		//TODO
-	}
 
 	public function toString(){
 		echo $this->_AdressDeparture."\n";

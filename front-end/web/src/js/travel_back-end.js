@@ -37,6 +37,11 @@ function get_json_to_send_for_travel(departure_string, arrival_string, date)
     };
 }
 
+function get_json_to_send_for_travel_from_form()
+{
+    // TODO
+}
+
 function get_travels()
 {
     'use strict';

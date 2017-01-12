@@ -6,7 +6,7 @@ if(isset($_POST['clef'])){
 
 	$json = $_POST['clef'];
 
-	$Api_communicator = new Api_communicator($json)	;
+	$Api_communicator = new MobiFlowAPI($json)	;
 
 	$json_retour = $Api_communicator->findPaths();
 

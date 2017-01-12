@@ -222,3 +222,34 @@ The user identifier can be used to search only disabled paths.
 	}
 }
 ```
+
+```
+{
+	'travels': null,
+	'errors':
+	[
+		'Departure not found'
+	]
+}
+```
+
+```
+{
+	'travels': null,
+	'errors':
+	[
+		'Arrival not defined'
+	]
+}
+```
+
+```
+{
+	'travels': null,
+	'errors':
+	[
+		'Departure not defined',
+		'Date not defined'
+	]
+}
+```

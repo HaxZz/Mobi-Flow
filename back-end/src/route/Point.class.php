@@ -15,8 +15,8 @@ class Point
 	}
 
 	public function toString(){
-		echo $this->_longitude."\n";
 		echo $this->_latitude."\n";
+		echo $this->_longitude."\n";
 		echo $this->_adress."\n";
 		echo $this->_time."\n";
 	}

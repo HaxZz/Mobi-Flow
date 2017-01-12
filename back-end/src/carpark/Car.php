@@ -6,7 +6,7 @@ class Car
 {
     public function isAvailable($segment)
     {
-        // TODO Modifier
+        // TODO Modifier pour vraiment faire quelque chose
         return true;
     }
 }
