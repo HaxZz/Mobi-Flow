@@ -148,6 +148,9 @@
 		$url   = "https://" . $token . "@api.navitia.io/v1/journeys?from=". $gps_from_longitude .";". $gps_from_latitude ."&to=". $gps_to_longitude .";". $gps_to_latitude ."";
 		$url   = $url . handicap($handicap); 
 		$url   = $url . "&datetime=" . $horaire;
+		//VOITURE VROUM VROUM
+        //$url   = $url . '&first_section_mode[]=car&last_section_mode[]=car';
+		//$url = $url . '&first_section_mode[]=walking&last_section_mode[]=walking';
 		return $url;
 	}
 	
