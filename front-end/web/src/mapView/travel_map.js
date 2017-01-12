@@ -20,20 +20,26 @@ function getMap()
 	return map;
 }
 
-function draw_initial_map_error()
+function draw_initial_map_error_element()
 {
     'use strict';
-    
+    console.error("id="+ MAP_HTML_ID +" was not found");
+}
+
+function draw_initial_map_error_print()
+{
+    'use strict';
     var map_element = document.getElementById(MAP_HTML_ID);
     if(map_element)
     {
 	map_element.innerHTML = "La carte n'est pas disponible.";
-	alert.error("mapBoxId="+ mapBoxId +", mapBoxToken="+ mapBoxToken);
     }
-    else
-    {
-	alert.error("Map element not available");
-    }
+}
+
+function draw_initial_map_error_api_id()
+{
+    'use strict';
+    console.error("mapBoxId="+ mapBoxId +", mapBoxToken="+ mapBoxToken);
 }
 
 function draw_initial_map_unsafe()
@@ -58,15 +64,22 @@ function draw_initial_map()
 {
     'use strict';
     
-    if(typeof(mapBoxId)    == "undefined" || mapBoxId == null ||
+    if(document.getElementById(MAP_HTML_ID) == null)
+    {
+	draw_initial_map_error_element();
+	return false;
+    }
+    
+    if(typeof(mapBoxId)    == "undefined" || mapBoxId    == null ||
        typeof(mapBoxToken) == "undefined" || mapBoxToken == null)
     {
-	draw_initial_map_error();
+	draw_initial_map_error_print();
+	draw_initial_map_error_api_id();
+	return false;
     }
-    else
-    {
-	draw_initial_map_unsafe();
-    }
+    
+    draw_initial_map_unsafe();
+    return true;
 }
 
 window.addEventListener('load', draw_initial_map, false);

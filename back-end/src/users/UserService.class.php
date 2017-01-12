@@ -38,7 +38,6 @@ class UserService {
         
         $stmt = $_db->prepare("SELECT * FROM user WHERE username = :username");
 
-        print_r($stmt);
         $stmt->execute(array('username' => $username));
         if($stmt->fetch()){
             $outputJSON = '{ "result":"fail", "errors":"Username already registered" }';
@@ -143,12 +142,15 @@ class UserService {
 
         $_db = $this->connect();
 
-        $stmt = $_db->prepare("SELECT * FROM user WHERE id = :id");
-        $stmt->execute(array('id' => $id));
+        $stmt = $_db->prepare("SELECT * FROM user WHERE id = :id AND password = :password");
+
+        $stmt->execute(array('id' => $id, 'password' => $password));
+        
         if( $stmt->fetch() ){
             $update = $_db->prepare("UPDATE user SET username = :new_username WHERE id = :id");
             
             if($update->execute( array('id' => $id, 'new_username' => $new_username) )){
+                echo $new_username;               
                 $outputJSON = '{ "result":"ok" }';                
             }
             else{
@@ -162,7 +164,7 @@ class UserService {
         return json_encode($outputJSON);     
     }
 
-    public function modifyDisabled($myJSON)
+    public function Modify_Disabled($myJSON)
     {
         $myObj = json_decode($myJSON);
         $id = $myObj->{'id'};
@@ -190,4 +192,5 @@ class UserService {
         
         return json_encode($outputJSON);
     }
+
 }

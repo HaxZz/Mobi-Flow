@@ -15,7 +15,7 @@
     
     <div id="errors"></div>
     
-    <form action="date">
+    <form action="success">
       <p>
 	<input type="text" required="required"
 	       id="departure" placeholder="Votre point de départ" />
@@ -26,12 +26,17 @@
 	       id="arrival" placeholder="Votre point d'arrivée" />
       </p>
       
-      <div id="map"></div>
-      
       <p>
-	<label for="nb">Nombre de passager(s)</label>
-	<input type="number" value="1" min="1" id="nb" required="required" />
+	Horaire TODO
       </p>
+      
+      <p class="form-group">
+	<label for="nb">Nombre de passager(s)</label>
+	<input type="number" value="1" min="1" max="99" id="nb" required="required" />
+	<!-- TODO label a cote input https://getbootstrap.com/css/#forms -->
+      </p>
+      
+      <div id="map"></div>
       
       <!--<p>
 	<input type="checkbox" id="third-parties" />
