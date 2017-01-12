@@ -10,35 +10,48 @@ class UserService
     }
 
 
-    /**
-     * @brief Connects to the database using the global variables
-     * @return PDO The object representing the connection
-     */
+    // *
+    //  * @brief Connects to the database using the global variables
+    //  * @return PDO The object representing the connection
+     
     private function connect()
-    {
-        return new PDO('mysql:host=localhost;dbname=mobiflow', $user, $pass);
+    { 
+        try
+        {
+           $pdo = new PDO('mysql:host=localhost;dbname=mobiflow', $this->user, $this->pass);
+        }        
+        catch(Exception $e)
+        {
+                echo 'Une erreur est survenue !';
+                die();
+        }
+        return $pdo;
     }
 
 
 
-	public function signUp($myJSON)
-    {
+	public function signUp($myJSON) {
+
         $myObj = json_decode($myJSON);
         $username = $myObj->{'username'};
         $email = $myObj->{'email'};
         $password = $myObj->{'password'};
 
-        $_db = connect();
+        $_db = $this->connect();
         
         $stmt = $_db->prepare("SELECT * FROM user WHERE username = :username");
-        if( $stmt->execute(array('username' => $username)) ){
+
+        print_r($stmt);
+        $stmt->execute(array('username' => $username));
+        if($stmt->fetch()){
             $outputJSON = '{ "result":"fail", "errors":"Username already registered" }';
             return json_encode($outputJSON);
         }
 
         $stmt = $_db->prepare("SELECT * FROM user WHERE email_addr = :email");
 
-        if( $stmt->execute(array('email' => $email)) ){
+        $stmt->execute(array('email' => $email));
+        if($stmt->fetch()){
             $outputJSON = '{ "result":"fail", "errors":"Email address already registered" }';
             return json_encode($outputJSON);
         }
@@ -48,102 +61,41 @@ class UserService
             return json_encode($outputJSON);
         }
 
-        $stmt = $dbh->prepare("INSERT INTO user (username, email_addr, password) VALUES (:username, :email_addr, $password)");
-        $stmt->bindParam(':username', $name);
-        $stmt->bindParam(':email_addr', $email);
-        $stmt->bindParam(':password', $pass);
-
-        // insertion d'une ligne
-        $name = $username;
-        $email = $email_addr;
-        $pass = $password
+        $stmt = $_db->prepare("INSERT INTO user (username, email_addr, password) VALUES (:username, :email_addr, :password)");
         
-        if($stmt->execute()){
+        if($stmt->execute(array("username" => $username, "email_addr" => $email_addr, "password" => $password))){
             $output = '{ "result" : "ok"}';
             return json_encode($output);
         }
 
         $output = '{ "result" : "fail", "errors" : "insertion failed"}';
         return json_encode($output);
+  }
 
+     
+    public function signIn($myJSON)
+    {
+        $myObj = json_decode($myJSON);
+        $login = $myObj->{'login'};
+        $password = $myObj->{'password'};
+
+        $_db = $this->connect();
+
+        echo $login;
+        echo $password;
+        $stmt = $_db->prepare("SELECT * FROM user WHERE ( username = :login AND password = :pass)");
+        if( $stmt->execute(array("login" => $login, "pass" => $password)) ){
+            $outputJSON = '{ "result":"ok" }';
+        }
+        else{
+            $outputJSON = '{ "result":"fail", "errors" : "login and/or password failed" }';
+        }
+
+        return json_encode($outputJSON);
+       
+    
     }
 }
-
-
-    
-  //    $sql = "SELECT * FROM user WHERE username = $username";
-        // $result = $this->_db->query($sql);
-  //       if( $res->fetchColumn() > 0 )
-  //       {
-  //           $myObj = { 'result':'fail', 'errors':'Username already registered' };
-  //           $myJSON = JSON.stringify(myObj);
-  //           return $myJSON;
-  //       }
-
-  //       $sql = "SELECT * FROM user WHERE email_addr = $email";
-        // $result = $this->_db->query($sql);
-  //       if( $result->fetchColumn() > 0 )
-  //       {
-  //           $myObj = { 'result':'fail', 'errors':'Email address already used' };
-  //           $myJSON = JSON.stringify(myObj);
-  //           return $myJSON;
-  //       }
-
-  //       if( mb_strlen($password) < 5 )
-  //       {
-  //           $myObj = { 'result':'fail', 'errors':'Password too short' };
-  //           $myJSON = JSON.stringify(myObj);
-  //           return $myJSON;
-  //       }
-
-  //       $sql = "INSERT INTO user (username, email_addr, password) VALUES ('$username', '$email', '$password')";
-  //       $this->_db->query($sql);
-
-  //       $myObj = { 'result':'ok' };
-  //       $myJSON = JSON.stringify(myObj);
-  //       return $myJSON;
-  //       
-  //       
-  //       
- //    public function signIn($myJSON)
- //    {
- //        $myObj = json_decode($myJSON);
- //        $login = $myObj->{'login'};
- //        $password = $myObj->{'password'};
-
- //        $_db = connect();
-
- //        $stmt = $_db->prepare("SELECT * FROM user WHERE (username = :login OR email_addr = :login) AND password =:pass");
-        
- //        if( $stmt->execute(array('login' => $login, 'pass' => $password)) ){
- //            $outputJSON = '{ "result":"ok" }';
- //        }
- //        else{
- //            $outputJSON =  = '{ "result":"fail", "errors" : "login and/or password failed" }';
- //        }
-
- //        return json_encode($outputJSON);
-       
- //        // $myObj = JSON.parse(myJSON);
- //        // $login = myobj.login;
- //        // $password = myobj.password;
-
- //        // $_db = connect();
-
- //        // $sql = "SELECT * FROM user WHERE username = $login OR email_addr = $login";
- //        // $result = $this->_db->query($sql);
- //        // if ($result->fetchColumn() == 0)
- //        // {
- //        //     $myObj = { 'result':'fail' };
- //        //     $myJSON = JSON.stringify(myObj);
- //        //     return $myJSON;
- //        // }
-        
- //        // $myObj = { 'result':'ok' };
- //        // $myJSON = JSON.stringify(myObj);
- //        // return $myJSON;
- //    }
-
  //    public function Modify_Password($myJSON)
  //    {
  //        $myObj = json_decode($myJSON);

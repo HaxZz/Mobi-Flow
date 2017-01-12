@@ -1,43 +1,37 @@
 <?php
 
-$user = 'user';
-$pass = 'pass';
+include_once("UserServiceQuentin.php");
 
-/**
- * @brief Connects to the database using the global variables
- * @return PDO The object representing the connection
- */
-function connect()
-{
-    global $user, $pass;
+$user = "user";
+$pass = "pass";
 
-    return new PDO('mysql:host=localhost;dbname=mobiflow', $user, $pass);
-}
+$UserService = new UserService($user,$pass);
 
-/**
- * @brief Signs a new user into the database 
- * @param  User $user the user inserted in the database
- * @return Success or fail       
- */
-function signUp($user)
-{
-    $pdo = connect();
+echo "Test enregistrement <br>";
 
-    $sql = "INSERT INTO mabite";
+$json = '{"username": "toto1",
+	"email"   : "toto@addr.tld",
+	"password": "totopass1"}';
 
-    $pdo = null;
-}
+echo $json;
 
-/**
- * @brief logs the given user in
- * @param  User $user the user to be logged in
- * @return Success or fail
- */
-function login($user)
-{
-    $pdo = connect();
-    $pdo = null;
-}
+$output = $UserService->signUp($json);
 
-	 
-//modify pass, modify mail
+echo json_decode($output);
+
+echo "<br>Test connexion <br>";
+
+$output = $UserService->signIn($json);
+
+echo json_decode($output);
+
+echo "<br>Test connexion longin faux <br>";
+
+$json = '{"username": "toto",
+	"email"   : "toto@addr.tld",
+	"password": "totopass1"}';
+
+$output = $UserService->signIn($json);
+
+echo json_decode($output);
+?>
