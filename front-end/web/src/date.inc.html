@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Date - Mobi'Flow</title>
+  </head>
+  
+  <body>
+    <h1>Définissez votre date et horaire</h1>
+    
+    <ul>
+      <li>De lieu1 vers lieu2</li>
+    </ul>
+    
+    <form action="success">
+      <p>
+	<label>Date</label>
+	<input type="datetime-local" required="required" />
+	<!-- TODO multiple inputs? no polyfill and easier for backend -->
+      </p>
+      
+      <ul class="buttons">
+	<li><a class="btn next" onclick="goto_page('success')">Aujourd'hui, 15h</a></li>
+	<li><a class="btn next" onclick="goto_page('success')">Demain, 8h</a></li>
+      </ul>
+      
+      <a class="btn previous" href="travel.html">Retour</a>
+    </form>
+  </body>
+</html>
