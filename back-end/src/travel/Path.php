@@ -1,20 +1,20 @@
 <?php
 
-	class Trajet 
+	class Path
 	{
-		public $debut;
+		public $beginning;
 	    public $fin;
         public $mode;
         public $infos;
 		public $traceCoordonnees;
 	
-		public function getDebut()
+		public function getBeginning()
 		{
-			return $this->debut;
+			return $this->beginning;
 		}
 
-		public function setDebut($nouveauDebut){
-			$this->debut = $nouveauDebut;
+		public function setBeginning($nouveauDebut){
+			$this->beginning = $nouveauDebut;
 		}
 
 		public function getFin(){

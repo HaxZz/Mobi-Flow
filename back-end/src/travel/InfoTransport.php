@@ -2,20 +2,20 @@
 
 	class InfoTransport
 	{
-		public $ligne ;
+		public $line ;
 		public $direction ;
-		public $stationDebut;
-		public $stationFin;
+		public $beginningStop;
+		public $endingStop;
 		public $modeTransport;
 		
-		public function getLigne()
+		public function getLine()
 		{
-			return $this->ligne;
+			return $this->line;
 		}
 
-		public function setLigne($nouvelleLigne)
+		public function setLine($nouvelleLigne)
 		{
-			$this->ligne = $nouvelleLigne;
+			$this->line = $nouvelleLigne;
 		}
 
 		public function getDirection()
@@ -28,24 +28,24 @@
 			$this->direction = $nouvelleDirection;
 		}
 
-		public function getStationDebut()
+		public function getBeginningStop()
 		{
-			return $this->stationDebut;
+			return $this->beginningStop;
 		}
 
-		public function setStationDebut($nouvelleStationDebut)
+		public function setBeginningStop($nouvelleStationDebut)
 		{
-			$this->stationDebut = $nouvelleStationDebut;
+			$this->beginningStop = $nouvelleStationDebut;
 		}
 
-		public function getStationFin()
+		public function getEndingStop()
 		{
-			return $this->stationFin;
+			return $this->endingStop;
 		}
 
-		public function setStationFin($nouvelleStationFin)
+		public function setEndingStop($nouvelleStationFin)
 		{
-			$this->stationFin = $nouvelleStationFin;
+			$this->endingStop = $nouvelleStationFin;
 		}
 
 		public function getModeTransport()

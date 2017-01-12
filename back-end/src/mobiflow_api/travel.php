@@ -1,24 +1,22 @@
 <?php
-//TODO noter la bonne url
-$apiUrl = "../travel/apiBridgeNoContent";
 
-$jsonInput = $_POST['json'];
+$jsonInput = file_get_contents('php://input');
+$apiUrl = "http://localhost/MOBIFLOW/back-end/src/travel/bridge.php";
+//$jsonInput = $_POST["json"];
 $travelRequest = json_decode($jsonInput, true);
 $userID = $travelRequest['user-id'];
-//TODO verifier heure / heure par defaut
 unset($travelRequest['user-id']);
- //TODO requete BDD pour recuperer le handicap
 $travelRequest['disability'] = "None";
 $request = json_encode($travelRequest);
-$opts = array('http' =>
-    array(
-        'method' => 'POST',
-        'header' => 'Content-type: application/json',
-        'content' => $request
-    )
-);
-
-$context = stream_context_create($opts);
-$result = file_get_contents($apiUrl, false, $context);
-//TODO recherche si voitures dispo sinon erreur
+$ch = curl_init();
+# Setup request to send json via POST.
+curl_setopt($ch, CURLOPT_URL, $apiUrl);
+curl_setopt( $ch, CURLOPT_POSTFIELDS, $request );
+curl_setopt( $ch, CURLOPT_HTTPHEADER, array('Content-Type:application/json'));
+# Return response instead of printing.
+curl_setopt( $ch, CURLOPT_RETURNTRANSFER, true );
+# Send request.
+$result = curl_exec($ch);
+curl_close($ch);
+# Print response.
 echo $result;

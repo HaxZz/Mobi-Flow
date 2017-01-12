@@ -1,5 +1,5 @@
 <?php
-	class Voyage
+	class Journey
 	{
 		public $trajet; //Tableau de trajets
 	
