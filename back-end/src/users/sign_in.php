@@ -10,5 +10,4 @@ $pass = "pass";
 $UserService = new UserService($user,$pass);
 
 echo $UserService->signIn($str_json);
-
-}
+?>
