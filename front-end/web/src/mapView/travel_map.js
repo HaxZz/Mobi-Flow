@@ -69,15 +69,10 @@ function placeMarker(latitude, longitude)
     var marker = L.marker([latitude, longitude]).addTo(getMap());
 }
 
-function placePath(array)
+function placePath(array, color)
 {
     'use strict';
-    // The Array is like that :
-    // var array = [
-    //        new L.LatLng(49.2141822, -0.3679652),
-    //        new L.LatLng(49.2072782, -0.3608517)
-    // ];
-    var polyline = L.polyline(array, {color: 'red'}).addTo(getMap());
+    var polyline = L.polyline(array, {color: color}).addTo(getMap());
 }
 
 function draw_initial_map()
@@ -131,6 +126,8 @@ function get_travel_from_back_end(backendUrl)
 
 function draw_map_from_json(jsonContent)
 {
+	var switcher = 1;
+
 	// For each trajet
 	for (var i = 0; i < jsonContent.length; i++) 
 	{
@@ -139,13 +136,35 @@ function draw_map_from_json(jsonContent)
 		// For each segment
 		for (var j = 0; j < trajet.length; j++) 
 		{
-			var segment = trajet[i];
+			var segment = trajet[j];
+			var arrayToDraw = [];
 
-			// For each trace coordinate of a segment
-			for (var k = 0; k < segment["traceCoordonnees"].length; k++) 
+			if(segment["traceCoordonnees"] != null)
 			{
-				var node = segment["traceCoordonnees"][k];
-				placeMarker(node["latitude"], node["longitude"]);
+				// For each trace coordinate of a segment
+				for (var k = 0; k < segment["traceCoordonnees"].length; k++) 
+				{
+					var node = segment["traceCoordonnees"][k];
+
+					//If first node place a marker
+					if(j == 0 && k == 0)
+						placeMarker(node["latitude"], node["longitude"]);
+
+					arrayToDraw[k] = new L.LatLng(node["latitude"], node["longitude"]);
+					
+					//If last node place a marker
+					if(k == segment["traceCoordonnees"].length-1 && j == trajet.length-1)
+						placeMarker(node["latitude"], node["longitude"]);
+				}
+
+				// Change color for each segment
+				var color;
+				var r = Math.floor(Math.random() * 255);
+				var g = Math.floor(Math.random() * 255);
+				var b = Math.floor(Math.random() * 255);
+				color= "rgb("+r+" ,"+g+","+ b+")"; 
+
+				placePath(arrayToDraw, color);
 			}
 		}
 	}
