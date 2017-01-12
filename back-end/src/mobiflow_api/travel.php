@@ -6,7 +6,8 @@ $apiUrl = "http://localhost/MOBIFLOW/back-end/src/travel/bridge.php";
 $travelRequest = json_decode($jsonInput, true);
 $userID = $travelRequest['user-id'];
 unset($travelRequest['user-id']);
-$travelRequest['disability'] = "None";
+$db = new UserService("user", "pass");
+$travelRequest['disability'] = $db->demandHandicap('user-id');
 $request = json_encode($travelRequest);
 $ch = curl_init();
 # Setup request to send json via POST.

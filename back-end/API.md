@@ -253,7 +253,7 @@ The user identifier can be used to search only disabled paths.
 	]
 }
 ```
-
+```
 [
   {
     "trajet": [
@@ -276,7 +276,7 @@ The user identifier can be used to search only disabled paths.
             "latitude": 44.864065,
             "longitude": -0.728742
           },
-          "adress": "Village de Magudas (Saint-M\u00e9dard-en-Jalles)"
+          "adress": "Village de Magudas (Saint-Médard-en-Jalles)"
         },
         "beginning": {
           "time": "20170120T185752",
@@ -384,9 +384,9 @@ The user identifier can be used to search only disabled paths.
         ],
         "infos": {
           "modeTransport": "Bus",
-          "endingStop": "Henri Barbusse (M\u00e9rignac)",
-          "beginningStop": "Village de Magudas (Saint-M\u00e9dard-en-Jalles)",
-          "direction": "Henri Barbusse (M\u00e9rignac)",
+          "endingStop": "Henri Barbusse (Mérignac)",
+          "beginningStop": "Village de Magudas (Saint-Méard-en-Jalles)",
+          "direction": "Henri Barbusse (Mérignac)",
           "line": "71"
         },
         "mode": "public_transport",
@@ -396,7 +396,7 @@ The user identifier can be used to search only disabled paths.
             "latitude": 44.856332,
             "longitude": -0.642731
           },
-          "adress": "Henri Barbusse (M\u00e9rignac)"
+          "adress": "Henri Barbusse (Mérignac)"
         },
         "beginning": {
           "time": "20170120T191900",
@@ -404,7 +404,7 @@ The user identifier can be used to search only disabled paths.
             "latitude": 44.864065,
             "longitude": -0.728742
           },
-          "adress": "Village de Magudas (Saint-M\u00e9dard-en-Jalles)"
+          "adress": "Village de Magudas (Saint-Médard-en-Jalles)"
         }
       },
       {
