@@ -65,13 +65,8 @@ class Request {
 		// $route = new Route();
 
 		// $route->create($pointDeparture,$pointArrival);
-			
-
 	}
 
-	public function toJSON(){
-		//TODO
-	}
 
 	public function toString(){
 		echo $this->_AdressDeparture."\n";
