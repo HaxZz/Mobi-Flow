@@ -1,5 +1,5 @@
 <?php
-
+require_once "../users/UserService.class.php";
 $jsonInput = file_get_contents('php://input');
 $apiUrl = "http://localhost/MOBIFLOW/back-end/src/travel/bridge.php";
 //$jsonInput = $_POST["json"];
