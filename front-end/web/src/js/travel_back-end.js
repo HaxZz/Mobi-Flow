@@ -69,4 +69,69 @@ function get_travels()
     sendXMLHttpRequest(request, json_to_send);
 }
 
+var form = document.querySelector("form");
+form.onsubmit = function()
+{	
+	alert("normalement");
+	var departure = document.getElementById("departure").value;
+	var arrival = document.getElementById("arrival").value;
+
+	var beginning = getGPScoordinates(departure);
+	var ending = getGPScoordinates(arrival);
+	
+	var dateTravel = getDateForCurrentTravel();
+
+	var request = getXMLHttpRequest();
+    var method = 'POST';
+    request.open(method, "../../../../MOBIFLOW/back-end/src/mobiflow_api/travel.php", true);
+
+    var data = JSON.stringify(
+    	{
+    		"beginning" : 
+    		{ 
+    			"longitude" : beginning["longitude"], 
+    			"latitude" : beginning["latitude"] 
+    		},
+    		"ending" : 
+    		{ 
+    			"longitude" : ending["longitude"], 
+    			"latitude" : ending["latitude"] 
+    		}, 
+    		"datetime_departure" :
+    		{
+    			"date":
+				{
+					"year" : dateTravel.getFullYear(),
+					"month": dateTravel.getMonth(),
+					"day"  : dateTravel.getDay()
+				},
+				"time":
+				{
+					"hour"  : dateTravel.getHours(),
+					"minute": dateTravel.getMinutes()
+				}
+			},
+			"user-id": 3
+		});
+
+    sendXMLHttpRequest(request, data);
+    request.onreadystatechange = function()
+    {
+    
+    if(request.readyState == 4)
+    {
+        if(request.status == 200)
+        {
+	        var json_received_string = request.responseText.trim();
+	        var json_received = JSON.parse(json_received_string);
+	        alert(json_received);
+        }
+    }
+    };
+
+	goto_page("success");
+
+	return false;    	
+};
+
 window.addEventListener('load', get_travels, false);
