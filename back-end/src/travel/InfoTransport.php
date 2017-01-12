@@ -6,11 +6,11 @@
 
 	class InfoTransport
 	{
-		private $line ;
-		private $direction ;
-		private $beginningStop;
-		private $endingStop;
-		private $modeTransport;
+		public $line ;
+		public $direction ;
+		public $beginningStop;
+		public $endingStop;
+		public $modeTransport;
 		
 		public function getLine()
 		{
