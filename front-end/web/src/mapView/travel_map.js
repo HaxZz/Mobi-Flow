@@ -44,7 +44,7 @@ function draw_initial_map_error_api_id()
 
 function draw_initial_map_unsafe()
 {
-    var map = getMap().setView([49.1846225, -0.4073643], 13);
+    var map = getMap().setView([44.8637064, -0.6563529], 13);
     
     L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={accessToken}',
 	{
@@ -90,6 +90,55 @@ function draw_initial_map()
     
     draw_initial_map_unsafe();
     return true;
+}
+
+function get_travel_from_back_end(backendUrl)
+{
+    'use strict';
+    
+    var request = getXMLHttpRequest();
+    var method = 'POST';
+    request.open(method, backendUrl, false);
+
+    var json_returned = null;
+
+    request.onreadystatechange = function()
+    {
+		'use strict';
+		if(request.readyState == 4)
+		{
+		    if(request.status == 200)
+		    {
+			var json_received_string = request.responseText.trim();
+			var json_received = JSON.parse(json_received_string);
+			json_returned = json_received;
+		    }
+		}
+    };
+    sendXMLHttpRequest(request, "");
+    return json_returned;
+}
+
+function draw_map_from_json(jsonContent)
+{
+	// For each trajet
+	for (var i = 0; i < jsonContent.length; i++) 
+	{
+		var trajet = jsonContent[i]["trajet"];
+
+		// For each segment
+		for (var j = 0; j < trajet.length; j++) 
+		{
+			var segment = trajet[i];
+
+			// For each trace coordinate of a segment
+			for (var k = 0; k < segment["traceCoordonnees"].length; k++) 
+			{
+				var node = segment["traceCoordonnees"][k];
+				placeMarker(node["latitude"], node["longitude"]);
+			}
+		}
+	}
 }
 
 window.addEventListener('load', draw_initial_map, false);
