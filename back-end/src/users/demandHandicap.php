@@ -10,15 +10,6 @@ function demandHandicap(){
 	// $pass = "pass";
 
 	// $UserService = new UserService($user,$pass);
-
-	// $handicap = 
-	// echo "Test enregistrement <br>";
-
-	// $json = '{"username": "toto1",
-	// 	"email"   : "toto@addr.tld",
-	// 	"password": "totopass1"}';
-
-	// echo $json;
-
-	// $output = $UserService->signUp($json);
+	// $handicap = $UserService->demandHandicap($id);
+	// return $handicap; 
 }

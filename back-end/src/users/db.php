@@ -50,4 +50,15 @@ $json = '{"username": "toto1",
 $output = $UserService->signIn($json);
 
 echo json_decode($output);
+
+echo "<br>Test modify MDP <br>";
+
+$json = '{"id": "47",
+	"new_pass"   : "totoPASS3",
+	"password": "totopass1"}';
+
+ $output = $UserService->Modify_Password($json);
+
+echo json_decode($output);
+
 ?>
