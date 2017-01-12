@@ -18,10 +18,10 @@ function getGPScoordinatesFromXml(xml)
     {
 	return null;
     }
-    
+
     return {
-	"latitude" : placeTag.getAttribute("lat"),
-	"longitude": placeTag.getAttribute("lon")
+	"longitude": placeTag.getAttribute("lon"),
+    "latitude" : placeTag.getAttribute("lat")
     };
 }
 
@@ -85,8 +85,8 @@ function getGPScoordinates(address)
     
     var gps =
     {
-    	"latitude" : null,
-    	"longitude": null
+    	"longitude": null,
+        "latitude" : null
     };
     
     var words = address.split(" ");

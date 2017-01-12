@@ -18,20 +18,20 @@ function get_json_to_send_for_travel(departure_string, arrival_string, date)
     'use strict';
     
     return {
-	'departure': departure_string,
-	'arrival'  : arrival_string,
-	'datetime-departure':
+	"departure": departure_string,
+	"arrival"  : arrival_string,
+	"datetime-departure":
 	{
-		'date':
+		"date":
 		{
 			'year' : date.getYear(),
 			'month': date.getMonth(),
 			'day'  : date.getDay()
 		},
-		'time':
+		"time":
 		{
-			'hour'  : date.getHour(),
-			'minute': date.getMinutes()
+			"hour"  : date.getHours(),
+			"minute": date.getMinutes()
 		}
 	}
     };
@@ -39,7 +39,10 @@ function get_json_to_send_for_travel(departure_string, arrival_string, date)
 
 function get_json_to_send_for_travel_from_form()
 {
-    // TODO
+	var beginning = document.getElementById("departure").innerHTML;
+	var ending = document.getElementById("arrival").innerHTML;
+	var date = Date.now();
+    return get_json_to_send_for_travel(beginning, ending, date);
 }
 
 function get_travels()
@@ -65,5 +68,94 @@ function get_travels()
     var json_to_send = get_json_to_send_for_travel_from_form();
     sendXMLHttpRequest(request, json_to_send);
 }
+
+var form = document.querySelector("form");
+form.onsubmit = function()
+{	
+	alert("normalement");
+	var departure = document.getElementById("departure").value;
+	var arrival = document.getElementById("arrival").value;
+
+	var beginning = getGPScoordinates(departure);
+	var ending = getGPScoordinates(arrival);
+	
+	var dateTravel = getDateForCurrentTravel();
+
+	var request = getXMLHttpRequest();
+    var method = 'POST';
+
+    /*
+    var data = JSON.stringify(
+    	{
+    		"beginning" : 
+    		{ 
+    			"longitude" : beginning["longitude"], 
+    			"latitude" : beginning["latitude"] 
+    		},
+    		"ending" : 
+    		{ 
+    			"longitude" : ending["longitude"], 
+    			"latitude" : ending["latitude"] 
+    		}, 
+    		"datetime_departure" :
+    		{
+    			"date":
+				{
+					"year" : dateTravel.getFullYear(),
+					"month": dateTravel.getMonth(),
+					"day"  : dateTravel.getDay()
+				},
+				"time":
+				{
+					"hour"  : dateTravel.getHours(),
+					"minute": dateTravel.getMinutes()
+				}
+			},
+			"user-id": 3
+		});
+	*/
+	var data =
+	{
+	"beginning": {"longitude" : "00", "latitude" : "00" },
+    "ending"  : {"longitude" : "00", "latitude" : "00" },
+	"datetime_departure" :
+	{
+		"date":
+		{
+			"year" : "2017",
+			"month": "01",
+			"day"  : "20"
+		},
+		"time":
+		{
+			"hour"  : "18",
+			"minute": "44"
+		}
+	},
+	"user-id": 3
+	};
+	
+    alert(data);
+    request.open(method, "192.168.0.5/MOBIFLOW/back-end/src/mobiflow_api/travel.php", true);
+
+    request.onreadystatechange = function()
+    {    
+    if(this.readyState == 4)
+    {
+        if(this.status == 200)
+        {
+	        var json_received_string = this	.responseText.trim();
+	        var json_received = JSON.parse(json_received_string);
+	        alert(json_received);
+        }
+    }
+    };
+
+    sendXMLHttpRequest(request, data);
+
+	goto_page("success");
+
+	return false;    	
+};
 
 window.addEventListener('load', get_travels, false);
