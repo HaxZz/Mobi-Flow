@@ -65,9 +65,9 @@ class UserService {
 
         $stmt = $_db->prepare("INSERT INTO user (username, email_addr, password) VALUES (:username, :email_addr, :password)");
         
-        if($stmt->execute(array("username" => $username, "email_addr" => $email_addr, "password" => $password))){
+        if($stmt->execute(array("username" => $username, "email_addr" => $email, "password" => $password))){
             $output = '{ "result" : "ok"}';
-            return json_encode($output);
+            return $output;
         }
 
         $output = '{ "result" : "fail", "errors" : "insertion failed"}';
