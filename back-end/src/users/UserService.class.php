@@ -1,7 +1,6 @@
 <?php
 
-class UserService
-{
+class UserService {
     private $user, $pass;
 
     public function __construct($user,$pass){
@@ -28,7 +27,7 @@ class UserService
         return $pdo;
     }
 
-  public function signUp($myJSON) {
+    public function signUp($myJSON) {
 
         $myObj = json_decode($myJSON);
         $username = $myObj->{'username'};
@@ -68,11 +67,11 @@ class UserService
 
         $output = '{ "result" : "fail", "errors" : "insertion failed"}';
         return json_encode($output);
-  }
+    } 
 
      
-  public function signIn($myJSON)
-  {
+    public function signIn($myJSON)
+    {
         $myObj = json_decode($myJSON);
         $login = $myObj->{'username'};
         $password = $myObj->{'password'};
@@ -94,7 +93,15 @@ class UserService
     }
 
     public function demandHandicap($id){
-     //TODO
+        $_db = $this->connect();
+
+        $stmt = $_db->prepare("SELECT disabled FROM user WHERE id = :id");
+
+        $stmt->execute(array('id' => $id));
+
+        $resultat = $stmt->fetch(PDO::FETCH_ASSOC);
+
+        return $resultat['disabled'];
     }
 
     public function Modify_Password($myJSON) {
@@ -128,8 +135,7 @@ class UserService
 
     }
 
-    public function Modify_Username($myJSON)
-    {
+    public function Modify_Username($myJSON) {
         $myObj = json_decode($myJSON);
         $id = $myObj->{'id'};
         $password = $myObj->{'password'};
@@ -153,8 +159,7 @@ class UserService
             $outputJSON = '{ "result":"fail", "errors" : "wrong id" }';
         }
 
-        return json_encode($outputJSON);
-        
+        return json_encode($outputJSON);     
     }
 
     public function modifyDisabled($myJSON)

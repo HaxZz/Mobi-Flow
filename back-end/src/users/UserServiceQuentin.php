@@ -94,7 +94,15 @@ class UserService
     }
 
     public function demandHandicap($id){
-     //TODO
+        $_db = $this->connect();
+
+        $stmt = $_db->prepare("SELECT disabled FROM user WHERE id = :id");
+
+        $stmt->execute(array('id' => $id));
+
+        $resultat = $stmt->fetch(PDO::FETCH_ASSOC);
+
+        return $resultat['disabled'];
     }
 
     public function Modify_Password($myJSON) {

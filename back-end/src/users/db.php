@@ -81,4 +81,14 @@ $json = '{"id": "47",
 
 echo json_decode($output);
 
+echo "<br>fonction handicap <br>";
+
+$output = $UserService->demandHandicap(47);
+
+if(empty($output)){
+	echo "disabled à NULL dans la BDD";
+}
+else{
+	echo $output;
+}
 ?>
