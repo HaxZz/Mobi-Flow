@@ -9,7 +9,6 @@ class UserService
         $this->pass = $pass;
     }
 
-    
     private function connect()
     { 
         try

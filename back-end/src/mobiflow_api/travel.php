@@ -16,6 +16,7 @@ $opts = array('http' =>
         'content' => $request
     )
 );
+
 $context = stream_context_create($opts);
 $result = file_get_contents($apiUrl, false, $context);
 //TODO recherche si voitures dispo sinon erreur
