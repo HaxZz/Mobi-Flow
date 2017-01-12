@@ -1,12 +1,16 @@
 <?php
+/* Creative Commons BY, version 4.0 or (at your option) any later version.
+ * https://creativecommons.org/licenses/by/4.0/
+ */
+
 
 	class InfoTransport
 	{
-		public $line ;
-		public $direction ;
-		public $beginningStop;
-		public $endingStop;
-		public $modeTransport;
+		private $line ;
+		private $direction ;
+		private $beginningStop;
+		private $endingStop;
+		private $modeTransport;
 		
 		public function getLine()
 		{
@@ -59,5 +63,3 @@
 		}
 		
 	}
-
-?>

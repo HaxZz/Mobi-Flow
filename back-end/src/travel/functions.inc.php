@@ -1,12 +1,18 @@
 <?php
+/* Creative Commons BY, version 4.0 or (at your option) any later version.
+ * https://creativecommons.org/licenses/by/4.0/
+ */
+
 
 	function check_format_coordonnee($coordonnee)
 	{
+        // TODO
 		return true;
 	}
 	
 	function check_format_heure($heure)
 	{
+        // TODO
 		return true;
 	}
 	
@@ -128,21 +134,29 @@
 				$voyage->addTrajet($segment);
 				
 			}
-			array_push($voyages,$voyage);
+			array_push($voyages, $voyage);
 		}
 		return $voyages;
 	}
 	
 	function utf8_decode_maison($str)
 	{
-		$str = preg_replace_callback('/\\\\u([0-9a-fA-F]{4})/', function ($match) {
-		return mb_convert_encoding(pack('H*', $match[1]), 'UTF-8', 'UTF-16BE');
-	}, $str);
+		$str = preg_replace_callback('/\\\\u([0-9a-fA-F]{4})/',
+                                     function ($match) {
+                                         return mb_convert_encoding(pack('H*', $match[1]),
+                                                                    'UTF-8',
+                                                                    'UTF-16BE');
+                                     },
+                                     $str);
 		return $str;
 	}
 	
-	function fabriquer_url($gps_from_longitude = "", $gps_from_latitude = "", 
-	$gps_to_longitude = "", $gps_to_latitude = "", $handicap = "", $horaire = "")
+	function fabriquer_url($gps_from_longitude = "",
+                           $gps_from_latitude = "",
+                           $gps_to_longitude = "",
+                           $gps_to_latitude = "",
+                           $handicap = "",
+                           $horaire = "")
 	{	
 		$token = '43c3c947-637f-4a49-906a-adc05346c888';
 		$url   = "https://" . $token . "@api.navitia.io/v1/journeys?from=". $gps_from_longitude .";". $gps_from_latitude ."&to=". $gps_to_longitude .";". $gps_to_latitude ."";
@@ -154,7 +168,7 @@
 		return $url;
 	}
 	
-	function get_content($url="")
+	function get_content($url = "")
 	{
 		$json = @file_get_contents($url);
 		if($json === FALSE)

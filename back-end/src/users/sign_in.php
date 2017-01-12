@@ -4,7 +4,7 @@
  */
 
 
-include_once('UserService.class.php');
+require_once('UserService.class.php');
 
 $str_json = file_get_contents('php://input');
 
@@ -14,4 +14,3 @@ $pass = "pass";
 $UserService = new UserService($user, $pass);
 
 echo $UserService->signIn($str_json);
-
