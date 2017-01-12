@@ -12,12 +12,19 @@ var map = null;
 
 function getMap()
 {
-	if(map == null)
+    'use strict';
+    if(map == null)
+    {
+	if(L && L.map)
 	{
-		map = L.map(MAP_HTML_ID);
+	    map = L.map(MAP_HTML_ID);
 	}
-
-	return map;
+	else
+	{
+	    console.error(L);
+	}
+    }
+    return map;
 }
 
 function draw_initial_map_error_element()
@@ -44,30 +51,35 @@ function draw_initial_map_error_api_id()
 
 function draw_initial_map_unsafe()
 {
-    var map = getMap().setView([49.1846225, -0.4073643], 13);
+    'use strict';
+    
+    var map = getMap();
+    map.setView([49.1846225, -0.4073643], 13);
     
     L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={accessToken}',
-	{
+		{
 		    attribution: 'Map data &copy; <a href="https://openstreetmap.org">OpenStreetMap</a> contributors, <a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="http://mapbox.com">Mapbox</a>',
 		    maxZoom: 18,
 		    id: mapBoxId, //mapBoxId defined elsewhere
 		    accessToken: mapBoxToken //mapBoxToken defined elsewhere
-	}).addTo(map);
+		}).addTo(map);
 }
 
 function placeMarker(latitude, longitude)
 {
-	var marker = L.marker([latitude, longitude]).addTo(getMap());
+    'use strict';
+    var marker = L.marker([latitude, longitude]).addTo(getMap());
 }
 
 function placePath(array)
 {
-	// The Array is like that :
-	// var array = [
+    'use strict';
+    // The Array is like that :
+    // var array = [
     //        new L.LatLng(49.2141822, -0.3679652),
     //        new L.LatLng(49.2072782, -0.3608517)
     // ];
-	var polyline = L.polyline(array, {color: 'red'}).addTo(getMap());
+    var polyline = L.polyline(array, {color: 'red'}).addTo(getMap());
 }
 
 function draw_initial_map()
