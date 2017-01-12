@@ -6,13 +6,15 @@
   <body>
     <h1>Fiche utilisateur/utilisatrice</h1>
     
+    <div id="errors"></div>
+    
     <form action="log-on">
       <ul class="buttons">
-	<li><input type="text" placeholder="Mon prénom" /></li>
-	<li><input type="text" placeholder="Mon nom" /></li>
-	<li><input type="text" placeholder="Date de naissance "/></li>
-	<li><input type="email" placeholder="Addresse email" /></li>
-	<li><input type="text" placeholder="Handicap ? (mieux formuler)" /></li>
+	<li><input type="text"  placeholder="Mon prénom" /></li>
+	<li><input type="text"  placeholder="Mon nom" /></li>
+	<li><input type="date"  placeholder="Date de naissance "/></li>
+	<li><input type="email" placeholder="Addresse email" required="required" /></li>
+	<li><input type="text"  placeholder="Handicap ? (TODO mieux formuler)" /></li>
 	<!-- Genre ? Masculin, Feminin, Autre, Ne souhaite pas le declarer -->
       </ul>
       
