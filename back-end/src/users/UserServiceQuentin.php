@@ -9,6 +9,11 @@ class UserService
         $this->pass = $pass;
     }
 
+
+    // *
+    //  * @brief Connects to the database using the global variables
+    //  * @return PDO The object representing the connection
+     
     private function connect()
     { 
         try
@@ -23,7 +28,11 @@ class UserService
         return $pdo;
     }
 
-  public function signUp($myJSON) {
+  public function demandHandicap($id){
+
+    
+  }
+	public function signUp($myJSON) {
 
         $myObj = json_decode($myJSON);
         $username = $myObj->{'username'};
@@ -88,7 +97,6 @@ class UserService
     
     }
 }
-
  //    public function Modify_Password($myJSON)
  //    {
  //        $myObj = json_decode($myJSON);
