@@ -60,6 +60,16 @@ function placeMarker(latitude, longitude)
 	var marker = L.marker([latitude, longitude]).addTo(getMap());
 }
 
+function placePath(array)
+{
+	// The Array is like that :
+	// var array = [
+    //        new L.LatLng(49.2141822, -0.3679652),
+    //        new L.LatLng(49.2072782, -0.3608517)
+    // ];
+	var polyline = L.polyline(array, {color: 'red'}).addTo(getMap());
+}
+
 function draw_initial_map()
 {
     'use strict';
