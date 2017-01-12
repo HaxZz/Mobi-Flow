@@ -5,10 +5,9 @@ $data = array(
     "ending" => array("longitude" => 00, "latitude" => 00),
     "datetime_beginning" => array("date" => array("year" => "2017", "month" => "01", "day" => "20"),
                             "time" => array("hour" => "18", "minute" => "44")),
-    "user-id" => 3);
+    "user-id" => 54);
 
 $data = array('json' => json_encode($data));
-echo json_encode($data);
 $ch = curl_init();
 # Setup request to send json via POST.
 curl_setopt($ch, CURLOPT_URL, $apiUrl);
