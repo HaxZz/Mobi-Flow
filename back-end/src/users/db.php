@@ -34,7 +34,7 @@ echo $json;
 $output = $UserService->signIn($json);
 
 echo json_decode($output);
-
+/*
 echo "<br>Test connexion longin faux <br>";
 
 $json = '{"username": "toto",
@@ -95,4 +95,5 @@ if(empty($output)){
 else{
 	echo $output;
 }
+*/
 ?>

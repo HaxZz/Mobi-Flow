@@ -66,7 +66,13 @@ class UserService {
         $stmt = $_db->prepare("INSERT INTO user (username, email_addr, password) VALUES (:username, :email_addr, :password)");
         
         if($stmt->execute(array("username" => $username, "email_addr" => $email, "password" => $password))){
-            $output = '{ "result" : "ok"}';
+            $stmt = $_db->prepare("SELECT id FROM user WHERE username = :username AND password = :password");
+
+            $stmt->execute(array('username' => $username, 'password' => $password));
+
+            $id = $stmt->fetch()[0];
+
+            $output = '{ "result" : "ok", "id-user" :'.$id.' }';
             return $output;
         }
 
@@ -83,10 +89,12 @@ class UserService {
 
         $_db = $this->connect();
 
-        $stmt = $_db->prepare("SELECT * FROM user WHERE ( username = :login AND password = :pass)");
+        $stmt = $_db->prepare("SELECT id FROM user WHERE username = :login AND password = :pass");
         $stmt->execute(array("login" => $login, "pass" => $password));
-        if( $stmt->fetch() ){
-            $outputJSON = '{ "result":"ok" }';
+        $id = $stmt->fetch()[0];
+        if( $id ){
+            
+            $outputJSON = '{ "result" : "ok", "id-user" :'.$id.' }';
         }
         else{
             $outputJSON = '{ "result":"fail", "errors" : "login and/or password failed" }';

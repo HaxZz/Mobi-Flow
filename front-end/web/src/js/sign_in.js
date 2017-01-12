@@ -1,16 +1,16 @@
 var form = document.querySelector("form");
 
+var id_user;
+
 form.onsubmit = function(){
 	
 	var request = getXMLHttpRequest();
     var method = 'POST';
-    request.open(method, "../../../../MOBIFLOW/back-end/src/users/sign_in.php", true);
+    request.open(method, "../../../../MOBIFLOW/back-end/src/users/sign_in.php", false);
 
     var data = JSON.stringify({"username" : $('#username').val(), "password" : $('#password').val()});
 
-    sendXMLHttpRequest(request, data );
-
-    var bool = true;
+    var oracle = true;
 
     request.onreadystatechange = function()
     {
@@ -19,20 +19,26 @@ form.onsubmit = function(){
     {
         if(request.status == 200)
         {
-	        var json_received_string = request.responseText.trim();
+            var json_received_string = request.responseText.trim();
             var json_received = JSON.parse(JSON.parse(json_received_string));
-	        var result = json_received["result"];
+            var result = json_received["result"];
 
-			if(result != "ok"){
-				alert(json_received["errors"]);
-				bool = false;
-			}        
+
+            if(result != "ok"){
+                alert(json_received["errors"]);
+                oracle = false;
+            }
+            else{
+                id_user = json_received["id-user"];
+            }        
         }
     }
     };
+    sendXMLHttpRequest(request, data );
 
-    if(bool){
+    if(oracle){
 		goto_page("log-on");
+        return false;
     }
 		return false;    	
 };

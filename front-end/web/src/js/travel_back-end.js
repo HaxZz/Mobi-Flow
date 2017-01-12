@@ -8,8 +8,8 @@
 var BACKEND_URL = "http://192.168.12.65";
 var TRAVEL_BACKEND_URL = BACKEND_URL +"/TODO";
 
-var departure_string = "TODO";
-var arrival_string   = "TODO";
+var departure_string = $('#departure').val();
+var arrival_string   = $('#arrival').val();
 var date = Date.now(); // TODO
 
 
