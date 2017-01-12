@@ -18,20 +18,20 @@ function get_json_to_send_for_travel(departure_string, arrival_string, date)
     'use strict';
     
     return {
-	'departure': departure_string,
-	'arrival'  : arrival_string,
-	'datetime-departure':
+	"departure": departure_string,
+	"arrival"  : arrival_string,
+	"datetime-departure":
 	{
-		'date':
+		"date":
 		{
 			'year' : date.getYear(),
 			'month': date.getMonth(),
 			'day'  : date.getDay()
 		},
-		'time':
+		"time":
 		{
-			'hour'  : date.getHour(),
-			'minute': date.getMinutes()
+			"hour"  : date.getHours(),
+			"minute": date.getMinutes()
 		}
 	}
     };
@@ -39,7 +39,10 @@ function get_json_to_send_for_travel(departure_string, arrival_string, date)
 
 function get_json_to_send_for_travel_from_form()
 {
-    // TODO
+	var beginning = document.getElementById("departure").innerHTML;
+	var ending = document.getElementById("arrival").innerHTML;
+	var date = Date.now();
+    return get_json_to_send_for_travel(beginning, ending, date);
 }
 
 function get_travels()
