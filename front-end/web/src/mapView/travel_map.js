@@ -8,25 +8,53 @@
 
 var MAP_HTML_ID = "map";
 
-function draw_initial_map_error()
+var map = null;
+
+function getMap()
 {
     'use strict';
-    
+    if(map == null)
+    {
+	if(L && L.map)
+	{
+	    map = L.map(MAP_HTML_ID);
+	}
+	else
+	{
+	    console.error(L);
+	}
+    }
+    return map;
+}
+
+function draw_initial_map_error_element()
+{
+    'use strict';
+    console.error("id="+ MAP_HTML_ID +" was not found");
+}
+
+function draw_initial_map_error_print()
+{
+    'use strict';
     var map_element = document.getElementById(MAP_HTML_ID);
     if(map_element)
     {
 	map_element.innerHTML = "La carte n'est pas disponible.";
-	alert.error("mapBoxId="+ mapBoxId +", mapBoxToken="+ mapBoxToken);
     }
-    else
-    {
-	alert.error("Map element not available");
-    }
+}
+
+function draw_initial_map_error_api_id()
+{
+    'use strict';
+    console.error("mapBoxId="+ mapBoxId +", mapBoxToken="+ mapBoxToken);
 }
 
 function draw_initial_map_unsafe()
 {
-    var mymap = L.map(MAP_HTML_ID).setView([49.1846225, -0.4073643], 13);
+    'use strict';
+    
+    var map = getMap();
+    map.setView([49.1846225, -0.4073643], 13);
     
     L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={accessToken}',
 		{
@@ -34,54 +62,46 @@ function draw_initial_map_unsafe()
 		    maxZoom: 18,
 		    id: mapBoxId, //mapBoxId defined elsewhere
 		    accessToken: mapBoxToken //mapBoxToken defined elsewhere
-		}).addTo(mymap);
-
-    attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="http://mapbox.com">Mapbox</a>',
-    maxZoom: 18,
-    id: mapBoxId, //mapBoxId defined elsewhere
-    accessToken: mapBoxToken //mapBoxToken defined elsewhere
+		}).addTo(map);
 }
 
-function placeMarker(adress)
+function placeMarker(latitude, longitude)
 {
-	'use strict';
-    
-	var words = adress.split(" ");
+    'use strict';
+    var marker = L.marker([latitude, longitude]).addTo(getMap());
+}
 
-    var request = getXMLHttpRequest();
-    var method = 'GET';
-    request.open(method, TRAVEL_BACKEND_URL, true);
-    request.onreadystatechange = function()
-    {
-	'use strict';
-	if(request.readyState == 4)
-	{
-	    if(request.status == 200)
-	    {
-		var json_received_string = request.reponseText.trim();
-		var json_received = JSON.parse(json_received_string);
-		// TODO
-	    }
-	}
-    };
-    var json_to_send = get_json_to_send_for_travel_from_form();
-    sendXMLHttpRequest(request, json_to_send);
-
+function placePath(array)
+{
+    'use strict';
+    // The Array is like that :
+    // var array = [
+    //        new L.LatLng(49.2141822, -0.3679652),
+    //        new L.LatLng(49.2072782, -0.3608517)
+    // ];
+    var polyline = L.polyline(array, {color: 'red'}).addTo(getMap());
 }
 
 function draw_initial_map()
 {
     'use strict';
     
-    if(typeof(mapBoxId)    == "undefined" || mapBoxId == null ||
+    if(document.getElementById(MAP_HTML_ID) == null)
+    {
+	draw_initial_map_error_element();
+	return false;
+    }
+    
+    if(typeof(mapBoxId)    == "undefined" || mapBoxId    == null ||
        typeof(mapBoxToken) == "undefined" || mapBoxToken == null)
     {
-	draw_initial_map_error();
+	draw_initial_map_error_print();
+	draw_initial_map_error_api_id();
+	return false;
     }
-    else
-    {
-	draw_initial_map_unsafe();
-    }
+    
+    draw_initial_map_unsafe();
+    return true;
 }
 
 window.addEventListener('load', draw_initial_map, false);

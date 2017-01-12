@@ -33,6 +33,49 @@ if(typeof(getXMLHttpRequest) != 'function')
     }
 }
 
+function isXMLHttpRequest(value)
+{
+    'use strict';
+    if(value == undefined || value == null)
+    {
+	return false;
+    }
+    if(typeof(XMLHttpRequest) == 'function' && value instanceof XMLHttpRequest)
+    {
+	return true;
+    }
+    return false;
+}
+
+function createCORSRequest(method, url, async)
+{
+    if(async == undefined)
+    {
+	async = true;
+    }
+    
+    var xhr = new XMLHttpRequest();
+    if("withCredentials" in xhr)
+    {
+	// Check if the XMLHttpRequest object has a "withCredentials" property.
+	// "withCredentials" only exists on XMLHTTPRequest2 objects.
+	xhr.open(method, url, async);
+    }
+    else if(typeof(XDomainRequest) != "undefined")
+    {
+	// Otherwise, check if XDomainRequest.
+	// XDomainRequest only exists in IE, and is IE's way of making CORS requests.
+	xhr = new XDomainRequest();
+	xhr.open(method, url);
+    }
+    else
+    {
+	// Otherwise, CORS is not supported by the browser.
+	xhr = null;
+    }
+    return xhr;
+}
+
 function sendXMLHttpRequest(request, data)
 {
     'use strict';
@@ -48,7 +91,14 @@ function sendXMLHttpRequest(request, data)
     
     try
     {
-	request.send(data);
+	if(data == null)
+	{
+	    request.send();
+	}
+	else
+	{
+	    request.send(data);
+	}
 	return true;
     }
     catch(exception)

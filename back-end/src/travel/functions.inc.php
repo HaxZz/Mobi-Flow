@@ -52,13 +52,13 @@
 
 		foreach($journey as $journ) 
 		{
-			$voyage = new Voyage();
+			$voyage = new Journey();
 			$voyage->initTrajet();
 			
 			$sections = $journ->{'sections'};
 			foreach($sections as $sec)
 			{
-				$segment = new Trajet();
+				$segment = new Path();
 				$type = $sec->{'type'};
 				$segment->setMode($type);
 			
@@ -71,10 +71,10 @@
 					$infosTransport = $sec->{'display_informations'};
 
 					$info = new infoTransport();
-					$info->setLigne($infosTransport->{'code'});
+					$info->setLine($infosTransport->{'code'});
 					$info->setDirection($infosTransport->{'direction'});
-					$info->setStationDebut($sec->{'from'}->{'stop_point'}->{'label'});
-					$info->setStationFin($sec->{'to'}->{'stop_point'}->{'label'});
+					$info->setBeginningStop($sec->{'from'}->{'stop_point'}->{'label'});
+					$info->setEndingStop($sec->{'to'}->{'stop_point'}->{'label'});
 					$info->setModeTransport($infosTransport->{'commercial_mode'});
 					
 					$segment->setInfos($info);
@@ -90,7 +90,7 @@
 					$segment->initTraceCoordonnees();
 					foreach($points as $p)
 					{
-						$coord_add = new Coordonnee();
+						$coord_add = new Coordinates();
 						$coord_add->setLongitude($p[0]);
 						$coord_add->setLatitude ($p[1]);
 						$segment->ajouterTraceCoordonnees($coord_add);
@@ -98,29 +98,29 @@
 					}
 					
 					//Point Départ 
-					$coordDep = new Coordonnee();
+					$coordDep = new Coordinates();
 					$coordD = $points[0];
 					$coordDep->setLongitude($coordD[0]);
 					$coordDep->setLatitude($coordD[1]);
 					
 					$pointDep = new Point();
-					$pointDep->setAdresse($sec->{'from'}->{'name'});
-					$pointDep->setHeure($sec->{'departure_date_time'});
-					$pointDep->setCoordonnee($coordDep);
+					$pointDep->setAdress($sec->{'from'}->{'name'});
+					$pointDep->setTime($sec->{'departure_date_time'});
+					$pointDep->setCoordinates($coordDep);
 					
 					//Point arrivé
-					$coordAriv = new Coordonnee();
+					$coordAriv = new Coordinates();
 					$coordA = $points[count($points) - 1];
 					$coordAriv->setLongitude($coordA[0]);
 					$coordAriv->setLatitude($coordA[1]);
 					
 					$pointAriv = new Point();
-					$pointAriv->setAdresse($sec->{'to'}->{'name'});
-					$pointAriv->setHeure($sec->{'arrival_date_time'});
-					$pointAriv->setCoordonnee($coordAriv);
+					$pointAriv->setAdress($sec->{'to'}->{'name'});
+					$pointAriv->setTime($sec->{'arrival_date_time'});
+					$pointAriv->setCoordinates($coordAriv);
 					
 			
-					$segment->setDebut($pointDep);
+					$segment->setBeginning($pointDep);
 					$segment->setFin($pointAriv);
 				}
 				
@@ -148,6 +148,9 @@
 		$url   = "https://" . $token . "@api.navitia.io/v1/journeys?from=". $gps_from_longitude .";". $gps_from_latitude ."&to=". $gps_to_longitude .";". $gps_to_latitude ."";
 		$url   = $url . handicap($handicap); 
 		$url   = $url . "&datetime=" . $horaire;
+		//VOITURE VROUM VROUM
+        //$url   = $url . '&first_section_mode[]=car&last_section_mode[]=car';
+		//$url = $url . '&first_section_mode[]=walking&last_section_mode[]=walking';
 		return $url;
 	}
 	

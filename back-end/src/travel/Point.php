@@ -1,38 +1,38 @@
 <?php
 	class Point
 	{
-		public $adresse;
-		public $coordonnee;
-		public $heure;
+		public $adress;
+		public $coordinates;
+		public $time;
 		
-		public function getAdresse()
+		public function getAdress()
 		{
-			return $this->adresse;
+			return $this->adress;
 		}
 		
-		public function getCoordonnee()
+		public function getCoordinates()
 		{
-			return $this->coordonnee;
+			return $this->coordinates;
 		}
 		
-		public function getHeure()
+		public function getTime()
 		{
-			return $this->heure;
+			return $this->time;
 		}
 		
-		public function setAdresse($nouvelleAdresse)
+		public function setAdress($nouvelleAdresse)
 		{
-			$this->adresse = $nouvelleAdresse;
+			$this->adress = $nouvelleAdresse;
 		}
 		
-		public function setCoordonnee($nouvelleCoordonnee)
+		public function setCoordinates($nouvelleCoordonnee)
 		{
-			$this->coordonnee = $nouvelleCoordonnee;
+			$this->coordinates = $nouvelleCoordonnee;
 		}
 		
-		public function setHeure($nouvelleHeure)
+		public function setTime($nouvelleHeure)
 		{
-			$this->heure = $nouvelleHeure;
+			$this->time = $nouvelleHeure;
 		}
 	}
 ?>

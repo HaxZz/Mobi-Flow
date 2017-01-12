@@ -1,9 +1,14 @@
 <?php
+/* Creative Commons BY, version 4.0 or (at your option) any later version.
+ * https://creativecommons.org/licenses/by/4.0/
+ */
+
 
 class UserService {
     private $user, $pass;
 
-    public function __construct($user,$pass){
+    public function __construct($user, $pass)
+    {
         $this->user = $user;
         $this->pass = $pass;
     }
@@ -17,7 +22,8 @@ class UserService {
     { 
         try
         {
-           $pdo = new PDO('mysql:host=localhost;dbname=mobiflow', $this->user, $this->pass);
+           $pdo = new PDO('mysql:host=localhost;dbname=mobiflow',
+                          $this->user, $this->pass);
         }        
         catch(Exception $e)
         {
@@ -91,20 +97,17 @@ class UserService {
     
     }
 
-    public function demandHandicap($id){
+    public function demandHandicap($id)
+    {
         $_db = $this->connect();
-
         $stmt = $_db->prepare("SELECT disabled FROM user WHERE id = :id");
-
         $stmt->execute(array('id' => $id));
-
         $resultat = $stmt->fetch(PDO::FETCH_ASSOC);
-
         return $resultat['disabled'];
     }
 
-    public function Modify_Password($myJSON) {
-        
+    public function Modify_Password($myJSON)
+    {
         $myObj = json_decode($myJSON);
         $id = $myObj->{'id'};
         $password = $myObj->{'password'};
@@ -112,11 +115,11 @@ class UserService {
 
         $_db = $this->connect();
 
-        $stmt = $_db->prepare("SELECT * FROM user WHERE id = :id AND password =:password");
-
+        $stmt = $_db->prepare("SELECT * FROM user ".
+                              "WHERE id = :id AND password =:password");
         $stmt->execute(array('id' => $id, 'password' => $password));
-
-        if( $stmt->fetch() ){
+        if( $stmt->fetch() )
+        {
             $update = $_db->prepare("UPDATE user SET password = :new_password WHERE id = :id"  );
             
             if($update->execute(array('id' => $id, 'new_password' => $newPassword))){
@@ -131,7 +134,6 @@ class UserService {
         }
 
         return json_encode($outputJSON);
-
     }
 
     public function Modify_Username($myJSON) {
@@ -176,17 +178,21 @@ class UserService {
         $stmt = $_db->prepare("SELECT * FROM user WHERE id = :id AND password = :password");
         $stmt->execute(array('id' => $id, 'password' => $password));
 
-        if( $stmt->fetch() ){
+        if( $stmt->fetch() )
+        {
             $update = $_db->prepare("UPDATE user SET disabled = :disabled WHERE id = :id");
             
-            if($update->execute( array('id' => $id, 'disabled' => $disabled) )){
+            if($update->execute( array('id' => $id, 'disabled' => $disabled) ))
+            {
                 $outputJSON = '{ "result":"ok" }';                
             }
-            else{
+            else
+            {
                 $outputJSON = '{"result" : "fail", "errors" : "disabled failed"}';
             }
         }
-        else{
+        else
+        {
             $outputJSON = '{ "result":"fail", "errors" : "wrong id" }';
         }
         
