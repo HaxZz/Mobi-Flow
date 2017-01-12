@@ -1,6 +1,6 @@
 <?php
 
-include_once("UserServiceQuentin.php");
+include_once("UserService.class.php");
 
 $user = "user";
 $pass = "pass";
@@ -53,7 +53,7 @@ echo json_decode($output);
 
 echo "<br>Test modify MDP <br>";
 
-$json = '{"id": "47",
+$json = '{"id": "53",
 	"new_pass"   : "totoPASS3",
 	"password": "totopass1"}';
 
@@ -63,7 +63,7 @@ echo json_decode($output);
 
 echo "<br>Test modify username <br>";
 
-$json = '{"id": "47",
+$json = '{"id": "53",
 	"new_username"   : "TITI",
 	"password": "totoPASS3"}';
 
@@ -73,17 +73,17 @@ echo json_decode($output);
 
 echo "<br>Test modify handicap <br>";
 
-$json = '{"id": "47",
+$json = '{"id": "53",
 	"disabled"   : "None",
 	"password": "totoPASS3"}';
 
- $output = $UserService->Modify_Username($json);
+ $output = $UserService->Modify_Disabled($json);
 
 echo json_decode($output);
 
 echo "<br>fonction handicap <br>";
 
-$output = $UserService->demandHandicap(47);
+$output = $UserService->demandHandicap(52);
 
 if(empty($output)){
 	echo "disabled à NULL dans la BDD";
