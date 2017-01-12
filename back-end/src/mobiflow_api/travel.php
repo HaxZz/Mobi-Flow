@@ -1,7 +1,7 @@
 <?php
 require_once "../users/UserService.class.php";
 $jsonInput = file_get_contents('php://input');
-$apiUrl = "http://localhost/MOBIFLOW/back-end/src/travel/bridge.php";
+$apiUrl = "http://haxz.freeboxos.fr/MOBIFLOW/back-end/src/travel/bridge.php";
 //$jsonInput = $_POST["json"];
 $travelRequest = json_decode($jsonInput, true);
 $userID = $travelRequest['user-id'];
