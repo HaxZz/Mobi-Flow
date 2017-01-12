@@ -7,6 +7,12 @@
 
 window.addEventListener('load', function()
 {
-    fill_page_with_import_inc_html("offline");
-    // TODO check anchor
+    var anchor = get_anchor_of_current_webpage();
+    if(anchor == undefined ||
+       anchor == null ||
+       anchor == "")
+    {
+	anchor = "offline";
+    }
+    fill_page_with_import_inc_html(anchor);
 }, false);

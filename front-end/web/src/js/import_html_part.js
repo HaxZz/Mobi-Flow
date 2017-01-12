@@ -155,13 +155,30 @@ function fill_page_with_import_inc_html(name)
     return fill_page_with_import_url_html(url);
 }
 
+function get_anchor_from_url_string(url)
+{
+    'use strict';
+    var url_parts = url.split('#');
+    return (url_parts.length > 1) ? url_parts[1] : null;
+}
+
+function get_anchor_of_current_webpage()
+{
+    'use strict';
+    return get_anchor_from_url_string(document.URL);
+}
+
 function goto_page(name)
 {
     'use strict';
     
-    fill_page_with_import_inc_html(name);
-    
     // TODO manage previous and forward
     // https://developer.mozilla.org/en-US/docs/Web/API/History_API
+    
+    //var new_url = window.location + "#" + name;
+    //history.replaceState(null, null, new_url);
+    //history.pushState(null, null, new_url);
+    fill_page_with_import_inc_html(name);
+    
     window.location = "#" + name;
 }
