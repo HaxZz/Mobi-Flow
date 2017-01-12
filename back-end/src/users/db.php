@@ -21,6 +21,12 @@ echo json_decode($output);
 
 echo "<br>Test connexion <br>";
 
+$json = '{"username": "toto1",
+	"email"   : "toto@addr.tld",
+	"password": "totopass1"}';
+
+echo $json;
+
 $output = $UserService->signIn($json);
 
 echo json_decode($output);
@@ -30,6 +36,16 @@ echo "<br>Test connexion longin faux <br>";
 $json = '{"username": "toto",
 	"email"   : "toto@addr.tld",
 	"password": "totopass1"}';
+
+$output = $UserService->signIn($json);
+
+echo json_decode($output);
+
+echo "<br>Test connexion MDP faux <br>";
+
+$json = '{"username": "toto1",
+	"email"   : "toto@addr.tld",
+	"password": "totopa"}';
 
 $output = $UserService->signIn($json);
 

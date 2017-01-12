@@ -28,8 +28,6 @@ class UserService
         return $pdo;
     }
 
-
-
 	public function signUp($myJSON) {
 
         $myObj = json_decode($myJSON);
@@ -76,15 +74,14 @@ class UserService
     public function signIn($myJSON)
     {
         $myObj = json_decode($myJSON);
-        $login = $myObj->{'login'};
+        $login = $myObj->{'username'};
         $password = $myObj->{'password'};
 
         $_db = $this->connect();
 
-        echo $login;
-        echo $password;
         $stmt = $_db->prepare("SELECT * FROM user WHERE ( username = :login AND password = :pass)");
-        if( $stmt->execute(array("login" => $login, "pass" => $password)) ){
+        $stmt->execute(array("login" => $login, "pass" => $password));
+        if( $stmt->fetch() ){
             $outputJSON = '{ "result":"ok" }';
         }
         else{
