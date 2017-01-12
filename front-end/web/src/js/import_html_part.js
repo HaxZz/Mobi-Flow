@@ -14,23 +14,37 @@ function html_parse_from_string(a_string)
 
 function load_script_from_path(path, type)
 {
+    'use strict';
     var element = document.createElement("script");
     element.src = path;
     if(type)
     {
 	element.type = type;
     }
-    var head = document.querySelector("head");
-    head.appendChild(element);
+    var body = document.querySelector("body");
+    body.appendChild(element);
+}
+
+function load_scripts_from_tags(tags)
+{
+    'use strict';
+    for(var i=0; i < tags.length; ++i)
+    {
+	var tag = tags[i];
+	load_script_from_path(tag.getAttribute("src"),
+			      tag.getAttribute("type"));
+    }
 }
 
 function load_javascript_from_path(path)
 {
+    'use strict';
     load_script_from_path(path, "text/javascript");
 }
 
 function load_javascript_from_paths(paths)
 {
+    'use strict';
     for(var i=0; i < paths.length; ++i)
     {
 	load_javascript_from_path(paths[i]);
@@ -44,14 +58,6 @@ function fill_page_with_head_as_dom(head)
     var title_downloaded = head.querySelector("head title");
     var title_current = document.querySelector("head title");
     title_current.innerHTML = title_downloaded.innerHTML;
-    
-    var scripts = head.querySelectorAll("script[src]");
-    for(var i=0; i < scripts.length; ++i)
-    {
-	var script = scripts[i];
-	load_script_from_path(script.getAttribute("src"),
-			      script.getAttribute("type"));
-    }
 }
 
 function fill_page_with_body_as_dom(body)
@@ -85,22 +91,38 @@ function fill_page_with_html_as_dom(html)
     
     var body_downloaded = html.querySelector("html body");
     fill_page_with_body_as_dom(body_downloaded);
+    
+    var scripts = html.querySelectorAll("script[src]");
+    load_scripts_from_tags(scripts);
 }
 
 function fill_page_with_xml_http_request_ok(request)
 {
     'use strict';
+    
     var html_downloaded = null;
     if(request.responseXML)
     {
 	html_downloaded = request.responseXML;
     }
+    else if(request.responseText)
+    {
+	var string_downloaded = request.responseText.trim();
+	html_downloaded = html_parse_from_string(string_downloaded);
+    }
+    else if(request.response)
+    {
+	var string_downloaded = request.response.trim();
+	html_downloaded = html_parse_from_string(string_downloaded);
+    }
     else
     {
-	var string_downloaded = request.reponseText.trim();
-	html_downloaded = html_parse_from_string(string);
+	console.error(request);
+	return false;
     }
+    
     fill_page_with_html_as_dom(html_downloaded);
+    return true;
 }
 
 function fill_page_with_import_url_html(url)
@@ -143,4 +165,3 @@ function goto_page(name)
     // https://developer.mozilla.org/en-US/docs/Web/API/History_API
     window.location = "#" + name;
 }
-
