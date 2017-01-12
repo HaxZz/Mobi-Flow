@@ -1,43 +1,94 @@
 <?php
 
-$user = 'user';
-$pass = 'pass';
+include_once("UserServiceQuentin.php");
 
-/**
- * @brief Connects to the database using the global variables
- * @return PDO The object representing the connection
- */
-function connect()
-{
-    global $user, $pass;
+$user = "user";
+$pass = "pass";
 
-    return new PDO('mysql:host=localhost;dbname=mobiflow', $user, $pass);
+$UserService = new UserService($user,$pass);
+
+echo "Test enregistrement <br>";
+
+$json = '{"username": "toto1",
+	"email"   : "toto@addr.tld",
+	"password": "totopass1"}';
+
+echo $json;
+
+$output = $UserService->signUp($json);
+
+echo json_decode($output);
+
+echo "<br>Test connexion <br>";
+
+$json = '{"username": "toto1",
+	"email"   : "toto@addr.tld",
+	"password": "totopass1"}';
+
+echo $json;
+
+$output = $UserService->signIn($json);
+
+echo json_decode($output);
+
+echo "<br>Test connexion longin faux <br>";
+
+$json = '{"username": "toto",
+	"email"   : "toto@addr.tld",
+	"password": "totopass1"}';
+
+$output = $UserService->signIn($json);
+
+echo json_decode($output);
+
+echo "<br>Test connexion MDP faux <br>";
+
+$json = '{"username": "toto1",
+	"email"   : "toto@addr.tld",
+	"password": "totopa"}';
+
+$output = $UserService->signIn($json);
+
+echo json_decode($output);
+
+echo "<br>Test modify MDP <br>";
+
+$json = '{"id": "47",
+	"new_pass"   : "totoPASS3",
+	"password": "totopass1"}';
+
+ $output = $UserService->Modify_Password($json);
+
+echo json_decode($output);
+
+echo "<br>Test modify username <br>";
+
+$json = '{"id": "47",
+	"new_username"   : "TITI",
+	"password": "totoPASS3"}';
+
+ $output = $UserService->Modify_Username($json);
+
+echo json_decode($output);
+
+echo "<br>Test modify handicap <br>";
+
+$json = '{"id": "47",
+	"disabled"   : "None",
+	"password": "totoPASS3"}';
+
+ $output = $UserService->Modify_Username($json);
+
+echo json_decode($output);
+
+echo "<br>fonction handicap <br>";
+
+$output = $UserService->demandHandicap(47);
+
+if(empty($output)){
+	echo "disabled à NULL dans la BDD";
 }
-
-/**
- * @brief Signs a new user into the database 
- * @param  User $user the user inserted in the database
- * @return Success or fail       
- */
-function signUp($user)
-{
-    $pdo = connect();
-
-    $sql = "INSERT INTO mabite";
-
-    $pdo = null;
+else{
+	echo $output;
 }
-
-/**
- * @brief logs the given user in
- * @param  User $user the user to be logged in
- * @return Success or fail
- */
-function login($user)
-{
-    $pdo = connect();
-    $pdo = null;
-}
-
-	 
-//modify pass, modify mail
+?>

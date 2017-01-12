@@ -8,9 +8,9 @@ Format: [JSON](https://en.wikipedia.org/wiki/JSON)
 
 ```
 {
-	'username': 'toto',
-	'email'   : 'toto@addr.tld',
-	'password': 'totopass'
+	"username": "toto",
+	"email"   : "toto@addr.tld",
+	"password": "totopass"
 }
 ```
 
@@ -18,27 +18,27 @@ Format: [JSON](https://en.wikipedia.org/wiki/JSON)
 
 ```
 {
-	'result': 'ok'
+	"result": "ok"
 }
 ```
 
 ```
 {
-	'result': 'fail',
-	'errors':
+	"result": "fail",
+	"errors":
 	[
-		'Usename already registered'
+		"Usename already registered"
 	]
 }
 ```
 
 ```
 {
-	'result': 'fail',
-	'errors':
+	"result": "fail",
+	"errors":
 	[
-		'Email address already used',
-		'Password too short'
+		"Email address already used",
+		"Password too short"
 	]
 }
 ```
@@ -49,8 +49,8 @@ Format: [JSON](https://en.wikipedia.org/wiki/JSON)
 
 ```
 {
-	'login'   : 'username',
-	'password': 'pass'
+	"login"   : "username",
+	"password": "pass"
 }
 ```
 
@@ -138,19 +138,19 @@ Format: [JSON](https://en.wikipedia.org/wiki/JSON)
 
 ```
 {
-	'departure': 'ENSICAEN, site B, Caen 14000, France',
-	'arrival'  : 'Le Dome, Caen 14000, France',
-	'datetime-departure':
+	"beginning": {"longitude" : "00", "latitude" : "00" },
+	"ending"  : {"longitude" : "00", "latitude" : "00" },
+	"datetime_beginning":
 	{
-		'date':
+		"date":
 		{
-			'year' : '2017',
-			'month': '01',
-			'day'  : '20'
+			"year" : "2017",
+			"month": "01",
+			"day"  : "20"
 		},
-		'time':
+		"time":
 		{
-			'hour'  : '18',
+			"hour'  : '18',
 			'minute': '44'
 		}
 	}
@@ -165,36 +165,36 @@ Format: [JSON](https://en.wikipedia.org/wiki/JSON)
 	{
 		'date':
 		{
-			'year' : '2017',
-			'month': '01',
-			'day'  : '20'
+			"year" : "2017",
+			"month": "01",
+			"day" : "20"
 		},
-		'time':
+		"time":
 		{
-			'hour'  : '18',
-			'minute': '44'
+			"hour"  : "18",
+			"minute": "44"
 		}
 	},
-	"disabled-friendly": 'false'
+	"disability": "None"
 }
 ```
 
 ```
 {
-	'departure': 'ENSICAEN, site B, Caen 14000, France',
-	'arrival'  : 'Le Dome, Caen 14000, France',
-	'datetime-departure' :
+	"beginning": {"longitude" : "00", "latitude" : "00" },
+    "ending"  : {"longitude" : "00", "latitude" : "00" },
+	"datetime_departure" :
 	{
-		'date':
+		"date":
 		{
-			'year' : '2017',
-			'month': '01',
-			'day'  : '20'
+			"year" : "2017",
+			"month": "01",
+			"day"  : "20"
 		},
-		'time':
+		"time":
 		{
-			'hour'  : '18',
-			'minute': '44'
+			"hour"  : "18",
+			"minute": "44"
 		}
 	},
 	"user-id": 3
