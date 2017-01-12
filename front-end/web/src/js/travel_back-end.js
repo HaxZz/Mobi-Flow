@@ -83,8 +83,8 @@ form.onsubmit = function()
 
 	var request = getXMLHttpRequest();
     var method = 'POST';
-    request.open(method, "../../../../MOBIFLOW/back-end/src/mobiflow_api/travel.php", true);
 
+    /*
     var data = JSON.stringify(
     	{
     		"beginning" : 
@@ -113,21 +113,45 @@ form.onsubmit = function()
 			},
 			"user-id": 3
 		});
+	*/
+	var data =
+	{
+	"beginning": {"longitude" : "00", "latitude" : "00" },
+    "ending"  : {"longitude" : "00", "latitude" : "00" },
+	"datetime_departure" :
+	{
+		"date":
+		{
+			"year" : "2017",
+			"month": "01",
+			"day"  : "20"
+		},
+		"time":
+		{
+			"hour"  : "18",
+			"minute": "44"
+		}
+	},
+	"user-id": 3
+	};
+	
+    alert(data);
+    request.open(method, "192.168.0.5/MOBIFLOW/back-end/src/mobiflow_api/travel.php", true);
 
-    sendXMLHttpRequest(request, data);
     request.onreadystatechange = function()
+    {    
+    if(this.readyState == 4)
     {
-    
-    if(request.readyState == 4)
-    {
-        if(request.status == 200)
+        if(this.status == 200)
         {
-	        var json_received_string = request.responseText.trim();
+	        var json_received_string = this	.responseText.trim();
 	        var json_received = JSON.parse(json_received_string);
 	        alert(json_received);
         }
     }
     };
+
+    sendXMLHttpRequest(request, data);
 
 	goto_page("success");
 
