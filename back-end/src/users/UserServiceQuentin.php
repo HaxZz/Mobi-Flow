@@ -28,6 +28,10 @@ class UserService
         return $pdo;
     }
 
+  public function demandHandicap($id){
+
+    
+  }
 	public function signUp($myJSON) {
 
         $myObj = json_decode($myJSON);
