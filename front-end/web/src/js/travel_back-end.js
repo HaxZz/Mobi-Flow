@@ -56,7 +56,7 @@ function get_travels()
 	{
 	    if(request.status == 200)
 	    {
-		var json_received_string = request.reponseText.trim();
+		var json_received_string = request.responseText.trim();
 		var json_received = JSON.parse(json_received_string);
 		// TODO
 	    }

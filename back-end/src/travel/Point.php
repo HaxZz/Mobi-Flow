@@ -1,9 +1,9 @@
 <?php
 	class Point
 	{
-		public $adress;
-		public $coordinates;
-		public $time;
+		private $adress;
+		private $coordinates;
+		private $time;
 		
 		public function getAdress()
 		{
@@ -35,4 +35,4 @@
 			$this->time = $nouvelleHeure;
 		}
 	}
-?>
+

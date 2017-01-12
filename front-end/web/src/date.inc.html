@@ -2,6 +2,9 @@
 <html>
   <head>
     <title>Date - Mobi'Flow</title>
+    
+    <script type="text/javascript"
+	    src="js/date.js"></script>
   </head>
   
   <body>
@@ -9,16 +12,29 @@
     
     <form action="travel">
       <p>
-	<label>Date</label>
-	<input type="datetime-local" required="required" />
-	<!-- TODO multiple inputs? no polyfill and easier for backend -->
-	<!-- TODO center -->
+	<label for="hour">Heure</label>
+	<input id="hour" type="number" min="0" max="23" />
       </p>
       
-      <!--<ul class="buttons">
-	<li><a class="btn next" onclick="goto_page('success')">Aujourd'hui, 15h</a></li>
-	<li><a class="btn next" onclick="goto_page('success')">Demain, 8h</a></li>
-      </ul>-->
+      <p>
+	<label for="minute">Minute</label>
+	<input id="minute" type="number" min="0" max="59" />
+      </p>
+      
+      <p>
+	<label for="day">Jour</label>
+	<input id="day" type="number" min="1" max="31" />
+      </p>
+      
+      <p>
+	<label for="month">Mois</label>
+	<input id="month" type="number" min="1" max="12" />
+      </p>
+      
+      <p>
+	<label for="year">Année</label>
+	<input id="year" type="number" value="2017" min="2017" max="3000" />
+      </p>
       
       <input type="submit" class="btn" value="Envoyer" />
       <a class="btn btn-info" href="travel.html">Retour</a>
