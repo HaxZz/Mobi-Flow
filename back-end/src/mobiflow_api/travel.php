@@ -13,7 +13,7 @@ $travelRequest = json_decode($jsonInput, true);
 $userID = $travelRequest['user-id'];
 unset($travelRequest['user-id']);
 $db = new UserService("user", "pass");
-$travelRequest['disability'] = $db->demandHandicap('user-id');
+$travelRequest['disability'] = "None"; //TODO $db->demandHandicap('user-id');
 $request = json_encode($travelRequest);
 
 $ch = curl_init();
