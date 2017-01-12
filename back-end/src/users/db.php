@@ -61,4 +61,24 @@ $json = '{"id": "47",
 
 echo json_decode($output);
 
+echo "<br>Test modify username <br>";
+
+$json = '{"id": "47",
+	"new_username"   : "TITI",
+	"password": "totoPASS3"}';
+
+ $output = $UserService->Modify_Username($json);
+
+echo json_decode($output);
+
+echo "<br>Test modify handicap <br>";
+
+$json = '{"id": "47",
+	"disabled"   : "None",
+	"password": "totoPASS3"}';
+
+ $output = $UserService->Modify_Username($json);
+
+echo json_decode($output);
+
 ?>

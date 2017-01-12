@@ -128,104 +128,61 @@ class UserService
 
     }
 
+    public function Modify_Username($myJSON)
+    {
+        $myObj = json_decode($myJSON);
+        $id = $myObj->{'id'};
+        $password = $myObj->{'password'};
+        $new_username = $myObj->{'new_username'};
+
+        $_db = $this->connect();
+
+        $stmt = $_db->prepare("SELECT * FROM user WHERE id = :id");
+        $stmt->execute(array('id' => $id));
+        if( $stmt->fetch() ){
+            $update = $_db->prepare("UPDATE user SET username = :new_username WHERE id = :id");
+            
+            if($update->execute( array('id' => $id, 'new_username' => $new_username) )){
+                $outputJSON = '{ "result":"ok" }';                
+            }
+            else{
+                $outputJSON = '{"result" : "fail", "errors" : "Usename already valid"}';
+            }
+        }
+        else{
+            $outputJSON = '{ "result":"fail", "errors" : "wrong id" }';
+        }
+
+        return json_encode($outputJSON);
+        
+    }
+
+    public function modifyDisabled($myJSON)
+    {
+        $myObj = json_decode($myJSON);
+        $id = $myObj->{'id'};
+        $password = $myObj->{'password'};
+        $disabled = $myObj->{'disabled'};
+
+        $_db = $this->connect();
+
+        $stmt = $_db->prepare("SELECT * FROM user WHERE id = :id AND password = :password");
+        $stmt->execute(array('id' => $id, 'password' => $password));
+
+        if( $stmt->fetch() ){
+            $update = $_db->prepare("UPDATE user SET disabled = :disabled WHERE id = :id");
+            
+            if($update->execute( array('id' => $id, 'disabled' => $disabled) )){
+                $outputJSON = '{ "result":"ok" }';                
+            }
+            else{
+                $outputJSON = '{"result" : "fail", "errors" : "disabled failed"}';
+            }
+        }
+        else{
+            $outputJSON = '{ "result":"fail", "errors" : "wrong id" }';
+        }
+        
+        return json_encode($outputJSON);
+    }
 }
-
- //    public function modifyUsername($myJSON)
- //    {
- //        $myObj = json_decode($myJSON);
- //        $id = $myObj->{'id'};
- //        $password = $myObj->{'password'};
- //        $new_username = $myObj->{'new_username'};
-
- //        $_db = connect();
-
- //        $stmt = $_db->prepare("SELECT * FROM user WHERE id = :id");
-        
- //        if( $stmt->execute(array('id' => $id)) ){
- //            $update = $_db->prepare("UPDATE user SET username = :new_username");
- //            $stmt->bindParam(':new_username', $new_username); 
-            
- //            if($stmt->execute()){
- //                $outputJSON = '{ "result":"ok" }';                
- //            }
- //            else{
- //                $outputJSON = '{"result" : "fail", "errors" : "Usename already valid"}';
- //            }
- //        }
- //        else{
- //            $outputJSON =  = '{ "result":"fail", "errors" : "wrong id" }';
- //        }
-
- //        return json_encode($outputJSON);
-        
- //        // $myObj = JSON.parse(myJSON);
- //        // $id = myobj.id;
- //        // $new_username = myobj.new_username;
- //        // $pass = myobj.pass;
-
- //        // $_db = connect();
-
- //        // $sql = "SELECT * FROM user WHERE username = $new_username";
- //        // $result = $this->_db->query($sql);
- //        // if( $result->fetchColumn() == 0 ){
- //        //     $sql = "UPDATE user SET username='$new_username' WHERE username-id=$id";
- //        //     $this->_db->query($sql);
- //        //     $myObj = { 'result':'ok' };
- //        //     $myJSON = JSON.stringify($myObj);
- //        // }
- //        // else
- //        // {
- //        //     $myObj = { 'result': 'fail', 'errors':'Username already used' };
- //        //     $myJSON = JSON.stringify($myObj);
- //        // }
-
- //        // return $myJSON;
- //    }
-
- //    public function modifyDisabled($myJSON)
- //    {
- //        $myObj = json_decode($myJSON);
- //        $id = $myObj->{'id'};
- //        $password = $myObj->{'password'};
- //        $disabled = $myObj->{'disabled'};
-
- //        $_db = connect();
-
- //        $stmt = $_db->prepare("SELECT * FROM user WHERE id = :id AND password = :password");
-        
- //        if( $stmt->execute(array('id' => $id, 'password' => $password)) ){
- //            $update = $_db->prepare("UPDATE user SET disabled = :disabled");
- //            $stmt->bindParam(':disabled', $disabled); 
-            
- //            if($stmt->execute()){
- //                $outputJSON = '{ "result":"ok" }';                
- //            }
- //            else{
- //                $outputJSON = '{"result" : "fail", "errors" : "disabled failed"}';
- //            }
- //        }
- //        else{
- //            $outputJSON =  = '{ "result":"fail", "errors" : "wrong id" }';
- //        }
-        
- //        return json_encode($outputJSON);
-    
- //        // $myObj = JSON.parse(myJSON);
- //        // $id = myobj.id;
- //        // $disabled = myobj.disabled;
- //        // $pass = myobj.pass;
-
- //        // $_db = connect();
- //        // $sql = "SELECT * FROM user WHERE username-id=$id AND password = $pass";
- //        // $result = $this->_db->query($sql);
- //        // if( $result->fetchColumn() == 0 ) {
- //        //     $myObj = { 'result':'fail', 'errors':'Password not valid'};
- //        //     return JSON.stringify($myObj);
- //        // }
-        
- //        // $sql = "UPDATE user SET disabled='$disabled' WHERE username-id=$id";
- //        // $this->_db->query($sql);
- //        // $myObj = { 'result':'ok' };
- //        // $myJSON = JSON.stringify($myObj);
- //        // return $myJSON;
- //    }
