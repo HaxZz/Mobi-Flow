@@ -1,0 +1,180 @@
+[{
+	"trajet": [{
+		"debut": {
+			"adresse": "Rue Camille Staint Saens (Eysines)",
+			"coord": {
+				"long": -0.6468921197,
+				"lati": 44.864288691
+			},
+			"heure": "20170111T094653"
+		},
+		"fin": {
+			"adresse": "La For\u00eat (M\u00e9rignac) (Eysines)",
+			"coord": {
+				"long": -0.648735,
+				"lati": 44.862534
+			},
+			"heure": "20170111T095100"
+		},
+		"mode": "street_network",
+		"infos": null
+	}, {
+		"debut": {
+			"adresse": "La For\u00eat (M\u00e9rignac) (Eysines)",
+			"coord": {
+				"long": -0.648735,
+				"lati": 44.862534
+			},
+			"heure": "20170111T095100"
+		},
+		"fin": {
+			"adresse": "Rue de Caud\u00e9ran (Bordeaux)",
+			"coord": {
+				"long": -0.597574,
+				"lati": 44.846503
+			},
+			"heure": "20170111T100600"
+		},
+		"mode": "public_transport",
+		"infos": {
+			"ligne": "3",
+			"direction": "Pole d'Echanges Quinconces (arr\u00eat de Descente) (Bordeaux)",
+			"stationDeb": "La For\u00eat (M\u00e9rignac) (Eysines)",
+			"stationFin": "Rue de Caud\u00e9ran (Bordeaux)",
+			"modeTransport": "Bus"
+		}
+	}, {
+		"debut": {
+			"adresse": "Rue de Caud\u00e9ran (Bordeaux)",
+			"coord": {
+				"long": -0.597574,
+				"lati": 44.846503
+			},
+			"heure": "20170111T100600"
+		},
+		"fin": {
+			"adresse": "Pasteur (Bordeaux)",
+			"coord": {
+				"long": -0.598459,
+				"lati": 44.84588
+			},
+			"heure": "20170111T100847"
+		},
+		"mode": "transfer",
+		"infos": null
+	}, {
+		"debut": null,
+		"fin": null,
+		"mode": "waiting",
+		"infos": null
+	}, {
+		"debut": {
+			"adresse": "Pasteur (Bordeaux)",
+			"coord": {
+				"long": -0.598459,
+				"lati": 44.84588
+			},
+			"heure": "20170111T101900"
+		},
+		"fin": {
+			"adresse": "Latule (Bordeaux)",
+			"coord": {
+				"long": -0.565162,
+				"lati": 44.870352
+			},
+			"heure": "20170111T103700"
+		},
+		"mode": "public_transport",
+		"infos": {
+			"ligne": "9",
+			"direction": "Brandenburg (Bordeaux)",
+			"stationDeb": "Pasteur (Bordeaux)",
+			"stationFin": "Latule (Bordeaux)",
+			"modeTransport": "Bus"
+		}
+	}, {
+		"debut": {
+			"adresse": "Latule (Bordeaux)",
+			"coord": {
+				"long": -0.565162,
+				"lati": 44.870352
+			},
+			"heure": "20170111T103700"
+		},
+		"fin": {
+			"adresse": "Boulevard Alfred Daney (Bordeaux)",
+			"coord": {
+				"long": -0.5648122881,
+				"lati": 44.8705646462
+			},
+			"heure": "20170111T103730"
+		},
+		"mode": "street_network",
+		"infos": null
+	}]
+}, {
+	"trajet": [{
+		"debut": {
+			"adresse": "Rue Camille Staint Saens (Eysines)",
+			"coord": {
+				"long": -0.6468921197,
+				"lati": 44.864288691
+			},
+			"heure": "20170111T095413"
+		},
+		"fin": {
+			"adresse": "Le Grand Louis (M\u00e9rignac) (Eysines)",
+			"coord": {
+				"long": -0.641788,
+				"lati": 44.861518
+			},
+			"heure": "20170111T100500"
+		},
+		"mode": "street_network",
+		"infos": null
+	}, {
+		"debut": {
+			"adresse": "Le Grand Louis (M\u00e9rignac) (Eysines)",
+			"coord": {
+				"long": -0.641788,
+				"lati": 44.861518
+			},
+			"heure": "20170111T100500"
+		},
+		"fin": {
+			"adresse": "Les Aubiers (Bordeaux)",
+			"coord": {
+				"long": -0.575584,
+				"lati": 44.873991
+			},
+			"heure": "20170111T103300"
+		},
+		"mode": "public_transport",
+		"infos": {
+			"ligne": "35",
+			"direction": "Les Aubiers (station Tram) (Bordeaux)",
+			"stationDeb": "Le Grand Louis (M\u00e9rignac) (Eysines)",
+			"stationFin": "Les Aubiers (Bordeaux)",
+			"modeTransport": "Bus"
+		}
+	}, {
+		"debut": {
+			"adresse": "Les Aubiers (Bordeaux)",
+			"coord": {
+				"long": -0.575584,
+				"lati": 44.873991
+			},
+			"heure": "20170111T103300"
+		},
+		"fin": {
+			"adresse": "Boulevard Alfred Daney (Bordeaux)",
+			"coord": {
+				"long": -0.5648122881,
+				"lati": 44.8705646462
+			},
+			"heure": "20170111T105053"
+		},
+		"mode": "street_network",
+		"infos": null
+	}]
+}]

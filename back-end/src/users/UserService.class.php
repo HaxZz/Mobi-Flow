@@ -80,63 +80,63 @@ class UserService
             $outputJSON = '{ "result":"ok" }';
         }
         else{
-            $outputJSON = '{ "result":"fail", "errors" : "login and/or password failed" }';
+            $outputJSON = '{ "result":"fail", "errors":"login and/or password failed" }';
         }
 
         return json_encode($outputJSON);
        
     
     }
+
+    public function Modify_Password($myJSON)
+    {
+        $myObj = json_decode($myJSON);
+        $id = $myObj->{'id'};
+        $password = $myObj->{'password'};
+        $newPassword = $myObj->{'new_pass'};
+
+        $_db = connect();
+
+        $stmt = $_db->prepare("SELECT * FROM user WHERE ( id = :id AND password =:password)");
+        $stmt->execute(array('login' => $id, 'password' => $password));
+        if( $stmt->fetch() ){
+            $update = $_db->prepare("UPDATE user SET password = :new_password");
+            $stmt->execute( 'new_password' => $newPassword )
+
+            if( $stmt->fetch() ){
+                $outputJSON = '{ "result":"ok" }';                
+            }
+            else{
+                $outputJSON = '{"result":"fail", "errors":"Password not valid"}';
+            }
+        }
+        else{
+            $outputJSON =  = '{ "result":"fail", "errors":"login and/or password failed" }';
+        }
+
+        return json_encode($outputJSON);
+
+        // $myObj = JSON.parse(myJSON);
+        // $id = myobj.id;
+        // $new_pass = myobj.new_pass;
+        // $pass = myobj.pass;
+
+        // $_db = connect();
+
+        // $sql = "SELECT * FROM user WHERE username-id = $id AND password = $pass";
+        // $result = $this->_db->query($sql);
+        // if( $result->fetchColumn() == 0 ) {
+        //     $myObj = { 'result': 'fail', 'errors':'Password not valid' };
+        //     $myJSON = JSON.stringify(myObj);
+        //     return $myJSON;
+        // }
+        
+        // $sql = "UPDATE user SET password='$new_pass' WHERE username-id=$id";
+        // $myObj = { 'result':'ok' };
+        // $myJSON = JSON.stringify(myObj);
+        // return $myJSON;
+    }
 }
-
- //    public function Modify_Password($myJSON)
- //    {
- //        $myObj = json_decode($myJSON);
- //        $id = $myObj->{'id'};
- //        $password = $myObj->{'password'};
- //        $newPasword = $myObj->{'new_pass'};
-
- //        $_db = connect();
-
- //        $stmt = $_db->prepare("SELECT * FROM user WHERE id = :id AND password =:password");
-        
- //        if( $stmt->execute(array('login' => $id, 'password' => $password)) ){
- //            $update = $_db->prepare("UPDATE user SET password = :new_password");
- //            $stmt->bindParam(':new_password', $newPasword); 
-            
- //            if($stmt->execute()){
- //                $outputJSON = '{ "result":"ok" }';                
- //            }
- //            else{
- //                $outputJSON = '{"result" : "fail", "errors" : "Password not valid"}';
- //            }
- //        }
- //        else{
- //            $outputJSON =  = '{ "result":"fail", "errors" : "login and/or password failed" }';
- //        }
-
- //        return json_encode($output);
-
- //        // $myObj = JSON.parse(myJSON);
- //        // $id = myobj.id;
- //        // $new_pass = myobj.new_pass;
- //        // $pass = myobj.pass;
-
- //        // $_db = connect();
-
- //        // $sql = "SELECT * FROM user WHERE username-id = $id AND password = $pass";
- //        // $result = $this->_db->query($sql);
- //        // if( $result->fetchColumn() == 0 ) {
- //        //     $myObj = { 'result': 'fail', 'errors':'Password not valid' };
- //        //     $myJSON = JSON.stringify(myObj);
- //        //     return $myJSON;
- //        // }
-        
- //        // $sql = "UPDATE user SET password='$new_pass' WHERE username-id=$id";
- //        // $myObj = { 'result':'ok' };
- //        // $myJSON = JSON.stringify(myObj);
- //        // return $myJSON;
- //    }
 
  //    public function modifyUsername($myJSON)
  //    {
