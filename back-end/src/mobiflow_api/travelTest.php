@@ -8,7 +8,6 @@ $data = array(
     "user-id" => 54);
 
 $data = array('json' => json_encode($data));
-echo json_encode($data);
 $ch = curl_init();
 # Setup request to send json via POST.
 curl_setopt($ch, CURLOPT_URL, $apiUrl);
