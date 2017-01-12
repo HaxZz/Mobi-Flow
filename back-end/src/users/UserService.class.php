@@ -8,7 +8,7 @@ class UserService
         $this->user = $user;
         $this->pass = $pass;
     }
-     
+
     private function connect()
     { 
         try
