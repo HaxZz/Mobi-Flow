@@ -6,11 +6,11 @@
 
 	class Path
 	{
-		private $beginning;
-	    private $fin;
-        private $mode;
-        private $infos;
-		private $traceCoordonnees;
+		public $beginning;
+	    public $fin;
+        public $mode;
+        public $infos;
+		public $traceCoordonnees;
         
 		public function getBeginning()
 		{
