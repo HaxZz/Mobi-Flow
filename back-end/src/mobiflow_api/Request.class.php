@@ -65,8 +65,6 @@ class Request {
 		// $route = new Route();
 
 		// $route->create($pointDeparture,$pointArrival);
-			
-
 	}
 
 	public function toJSON(){

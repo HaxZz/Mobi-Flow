@@ -7,9 +7,19 @@
  * Time: 16:06
  */
 require_once "../route/Route.php";
+require_once ""
 
 class JSONConverter
 {
+
+    public function RequestToJSON(Request $request) {
+        return $request->toJSON();
+    }
+
+    public function JSONToRoute($json) {
+
+    }
+
 
     public static function toJSON(Route $route) {
         $json = "{\"begining\":{ \"longitude\":".$route->beginning->position->longitude.", \"latitude\":".$route->beginning->position->latitude."},

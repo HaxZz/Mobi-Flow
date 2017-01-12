@@ -2,9 +2,13 @@
 
 require_once("../kernel.inc.php");
 
-class Api_communicator {
+$request = explode('/', trim($_SERVER['PATH_INFO'], '/'));
 
-	private $_request;
+$input = json_decode(file_get_contents('php://input'), true);
+
+/*
+class MobiFlowAPI {
+
 	private $_response;
 	private $_User;
 
@@ -46,4 +50,4 @@ class Api_communicator {
 	 	echo $this->_request->toString();
 	}
 }
-
+*/
