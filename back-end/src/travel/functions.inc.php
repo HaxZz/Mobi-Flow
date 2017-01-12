@@ -163,7 +163,7 @@
 		$url   = $url . handicap($handicap); 
 		$url   = $url . "&datetime=" . $horaire;
 		//VOITURE VROUM VROUM
-        $url   = $url . '&first_section_mode[]=car&last_section_mode[]=car';
+        //$url   = $url . '&first_section_mode[]=car&last_section_mode[]=car';
 		//$url = $url . '&first_section_mode[]=walking&last_section_mode[]=walking';
 		return $url;
 	}
