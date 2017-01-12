@@ -6,12 +6,11 @@
 	require_once("Trajet.php");
 	require_once("Voyage.php");
 	
-	//Wheelchair=true;
-	
-	if(isset($_POST['DATA'])) //1==1)//
+	$input = file_get_contents('php://input');
+
+	if($input != "")
 	{
-		//$data = "";
-		$data = $_POST['DATA'];
+		$data = $input;
 		
 		//Requete
 		$resultat_requete = requete($data);
