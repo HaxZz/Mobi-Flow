@@ -92,10 +92,8 @@ Debug/
 __pycache__/
 META-INF/
 ## Documentation
-doc/
-docs/
-documentation/
-Documentation/
+doc-gen/
+doc-generated/
 doc-html/
 
 # OS specific useless files
