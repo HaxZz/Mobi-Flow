@@ -72,7 +72,6 @@ function get_travels()
 var form = document.querySelector("form");
 form.onsubmit = function()
 {	
-	alert("normalement");
 	var departure = document.getElementById("departure").value;
 	var arrival = document.getElementById("arrival").value;
 
@@ -84,59 +83,45 @@ form.onsubmit = function()
 	var request = getXMLHttpRequest();
     var method = 'POST';
 
-    /*
-    var data = JSON.stringify(
-    	{
-    		"beginning" : 
-    		{ 
-    			"longitude" : beginning["longitude"], 
-    			"latitude" : beginning["latitude"] 
-    		},
-    		"ending" : 
-    		{ 
-    			"longitude" : ending["longitude"], 
-    			"latitude" : ending["latitude"] 
-    		}, 
-    		"datetime_departure" :
-    		{
-    			"date":
-				{
-					"year" : dateTravel.getFullYear(),
-					"month": dateTravel.getMonth(),
-					"day"  : dateTravel.getDay()
-				},
-				"time":
-				{
-					"hour"  : dateTravel.getHours(),
-					"minute": dateTravel.getMinutes()
-				}
-			},
-			"user-id": 3
-		});
-	*/
-	var data =
+	var dateMonth = dateTravel.getMonth();
+	dateMonth++;
+	if(dateMonth < 10)
+		dateMonth = "0" + dateMonth;
+
+	var dateDay = dateTravel.getDate();
+	if(dateDay < 10)
+		dateDay = "0" + dateDay;
+
+	var dateHour = dateTravel.getHours();
+	if(dateHour < 10)
+		dateHour= "0" + dateHour;
+
+	var dateMins = dateTravel.getMinutes();
+	if(dateMins < 10)
+		dateMins = "0" + dateMins;
+
+	var data = JSON.stringify(
 	{
-	"beginning": {"longitude" : "00", "latitude" : "00" },
-    "ending"  : {"longitude" : "00", "latitude" : "00" },
-	"datetime_departure" :
+	"beginning": {"longitude" : beginning["longitude"], "latitude" : beginning["latitude"] },
+    "ending"  : {"longitude" : ending["longitude"], "latitude" : ending["latitude"] },
+	"datetime_beginning" :
 	{
 		"date":
 		{
-			"year" : "2017",
-			"month": "01",
-			"day"  : "20"
+			"year" : dateTravel.getFullYear(),
+			"month": dateMonth,
+			"day"  : dateDay
 		},
 		"time":
 		{
-			"hour"  : "18",
-			"minute": "44"
+			"hour"  : dateHour,
+			"minute": dateDay
 		}
 	},
 	"user-id": 3
-	};
-	
-    alert(data);
-    request.open(method, "192.168.0.5/MOBIFLOW/back-end/src/mobiflow_api/travel.php", true);
+	});
+
+    request.open(method, "http://192.168.0.5/MOBIFLOW/back-end/src/mobiflow_api/travel.php", false);
 
     request.onreadystatechange = function()
     {    
@@ -144,9 +129,12 @@ form.onsubmit = function()
     {
         if(this.status == 200)
         {
+        	alert(this.responseText);
+        	/*
 	        var json_received_string = this	.responseText.trim();
 	        var json_received = JSON.parse(json_received_string);
 	        alert(json_received);
+	        */
         }
     }
     };
