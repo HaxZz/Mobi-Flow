@@ -55,7 +55,7 @@ function fill_page_with_head_as_dom(head)
 {
     'use strict';
     
-    var title_downloaded = head.querySelector("head title");
+    var title_downloaded = head.querySelector("title");
     var title_current = document.querySelector("head title");
     title_current.innerHTML = title_downloaded.innerHTML;
 }
@@ -86,10 +86,10 @@ function fill_page_with_html_as_dom(html)
 {
     'use strict';
     
-    var head_downloaded = html.querySelector("html head");
+    var head_downloaded = html.querySelector("head");
     fill_page_with_head_as_dom(head_downloaded);
     
-    var body_downloaded = html.querySelector("html body");
+    var body_downloaded = html.querySelector("body");
     fill_page_with_body_as_dom(body_downloaded);
     
     var scripts = html.querySelectorAll("script[src]");

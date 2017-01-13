@@ -5,8 +5,8 @@
  */
 
 
-var BACKEND_URL = "http://192.168.12.65";
-var TRAVEL_BACKEND_URL = BACKEND_URL +"/TODO";
+var BACKEND_URL = "http://192.168.12.65/";
+var TRAVEL_BACKEND_URL = BACKEND_URL +"MOBIFLOW/back-end/src/mobiflow_api/travel.php";
 
 var departure_string = $('#departure').val();
 var arrival_string   = $('#arrival').val();
@@ -130,7 +130,7 @@ form.onsubmit = function()
 
 	if(!trajet_drawed)
 	{
-	    request.open(method, "http://192.168.0.5/MOBIFLOW/back-end/src/mobiflow_api/travel.php", false);
+	    request.open(method, TRAVEL_BACKEND_URL, false);
 
 	    request.onreadystatechange = function()
 	    {    
