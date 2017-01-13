@@ -17,6 +17,8 @@ mb_internal_encoding('UTF-8');
 $GLOBALS['domain-name']   = '192.168.12.65';
 $GLOBALS['URL']           = 'http://'. $GLOBALS['domain-name'] .'/';
 $GLOBALS['bridgeURL'] = $GLOBALS['URL'].'/MOBIFLOW/back-end/src/travel/bridge.php';
+$GLOBALS['dbuser'] = 'user';
+$GLOBALS['dbpass'] = 'pass';
 $GLOBALS['absolute-path'] = realpath(dirname(__FILE__)) .'/';
 
 

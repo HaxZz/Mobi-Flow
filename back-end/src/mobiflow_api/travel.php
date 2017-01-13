@@ -5,12 +5,14 @@
 header('Access-Control-Allow-Origin: *');
 
 require_once("../users/UserService.class.php");
+require_once "../kernel.inc.php";
 
 $jsonInput = file_get_contents('php://input');
-
-$apiUrl = "http://192.168.12.65/MOBIFLOW/back-end/src/travel/bridge.php";
-
-//$jsonInput = $_POST["json"];
+if($jsonInput == "")
+{
+    echo '{"result": "fail", "errors": ["POST string is empty"]}';
+    return;
+}
 $travelRequest = json_decode($jsonInput, true);
 $userID = $travelRequest['user-id'];
 unset($travelRequest['user-id']);
@@ -20,7 +22,7 @@ $request = json_encode($travelRequest);
 
 $ch = curl_init();
 # Setup request to send json via POST.
-curl_setopt($ch, CURLOPT_URL, $apiUrl);
+curl_setopt($ch, CURLOPT_URL, $GLOBALS['bridgeURL']);
 curl_setopt($ch, CURLOPT_POSTFIELDS, $request);
 curl_setopt($ch, CURLOPT_HTTPHEADER, array('Content-Type:application/json; charset=utf-8'));
 # Return response instead of printing.

@@ -3,12 +3,13 @@
  * https://creativecommons.org/licenses/by/4.0/
  */
 
+require_once "../kernel.inc.php";
 
 $db = null;
 try
 {
     $db = new PDO('mysql:host=localhost;dbname=mobiflow',
-                  'user', 'pass');
+                  $GLOBALS['dbuser'], $GLOBALS['dbpass']);
 }
 catch (Exception $e)
 {
