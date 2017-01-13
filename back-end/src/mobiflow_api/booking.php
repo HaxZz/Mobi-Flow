@@ -1,6 +1,6 @@
 <?php
 
-$jsonInput = $_POST['json'];
+$jsonInput = $jsonInput = file_get_contents('php://input');
 $dataReceived = json_decode($jsonInput, true);
 $userID = $_POST['user-id'];
 $bddData = array(
