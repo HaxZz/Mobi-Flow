@@ -4,6 +4,7 @@
  */
 
 header('Access-Control-Allow-Origin: *');
+require_once "../kernel.inc.php";
 
 $jsonInput = file_get_contents('php://input');
 if($jsonInput == "")
@@ -33,7 +34,7 @@ if($dataReceived['user-id'] === "")
 $userID = $dataReceived['user-id'];
 
 $db = new PDO('mysql:host=localhost;dbname=mobiflow',
-              'user', 'pass');
+              $GLOBALS['dbuser'], $GLOBALS['dbpass']);
 $sql = "INSERT INTO booking(user_id)\nVALUES(:userid)";
 $stmt = $db->prepare($sql);
 $stmt->bindValue(":userid", $userID);
