@@ -2,7 +2,7 @@
 header('Content-Type:application/json');
 $jsonInput = $jsonInput = file_get_contents('php://input');
 $dataReceived = json_decode($jsonInput, true);
-$userID = $_POST['user-id'];
+$userID = $dataReceived['user-id'];
 $bddData = array(
     'user-id' => $userID,
     'date' => date("d/m/Y-HH:ii")
