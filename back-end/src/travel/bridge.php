@@ -3,6 +3,7 @@
  * https://creativecommons.org/licenses/by/4.0/
  */
 
+header('Access-Control-Allow-Origin: *');
 
 require_once("functions.inc.php");
 require_once("Point.php");
