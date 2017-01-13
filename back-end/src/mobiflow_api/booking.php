@@ -1,5 +1,5 @@
 <?php
-
+header('Access-Control-Allow-Origin: *');
 $jsonInput = $_POST['json'];
 $dataReceived = json_decode($jsonInput, true);
 $userID = $_POST['user-id'];
