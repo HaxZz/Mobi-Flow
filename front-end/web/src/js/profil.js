@@ -1,5 +1,11 @@
 var form = document.querySelector("form");
 
+var firstname;
+var lastname;
+var birthday;
+var email;
+var disabled;
+
 form.onsubmit = function(){
 	
 	var request = getXMLHttpRequest();
@@ -7,15 +13,21 @@ form.onsubmit = function(){
     request.open(method, "../../../../MOBIFLOW/back-end/src/users/profil.php", false);
 
     if($('#disabled').val() != ""){
-        var disabled = $('#disabled').val();
+        disabled = $('#disabled').val();
     }
     else{
-        var disabled = "None";
+        disabled = "None";
     }
-    var data = { "firstname" : $('#firstname').val(), 
-        "lastname" : $('#lastname').val(),
-        "birthday" : $('#birthday').val(),
-        "email" : $('#email').val(),
+
+    firstname = $('#firstname').val();
+    lastname = $('#lastname').val();
+    birthday = $('#birthday').val();
+    email = $('#email').val();
+    
+    var data = { "firstname" : firstname, 
+        "lastname" : lastname,
+        "birthday" : birthday,
+        "email" : ,
         "disabled" : disabled,
         "id" : id_user
     };
