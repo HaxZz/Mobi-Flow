@@ -6,7 +6,7 @@
 
 
 var BACKEND_URL = "http://192.168.12.65";
-var TRAVEL_BACKEND_URL = BACKEND_URL +"/TODO";
+var TRAVEL_BACKEND_URL = BACKEND_URL +"/MOBIFLOW/back-end/src/mobiflow_api/travel.php";
 
 var departure_string = $('#departure').val();
 var arrival_string   = $('#arrival').val();
