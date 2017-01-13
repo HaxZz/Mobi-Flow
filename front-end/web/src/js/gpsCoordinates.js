@@ -21,7 +21,7 @@ function getGPScoordinatesFromXml(xml)
 
     return {
 	"longitude": placeTag.getAttribute("lon"),
-    "latitude" : placeTag.getAttribute("lat")
+	"latitude" : placeTag.getAttribute("lat")
     };
 }
 
@@ -99,7 +99,7 @@ function getGPScoordinates(address)
 	    queryargs += "+";
 	}
     }
-
+    
     queryargs += "&format=xml&polygon=1&addressdetails=1";
     var apiURL = "https://nominatim.openstreetmap.org/search?q=";
     apiURL += queryargs;
@@ -116,6 +116,11 @@ function getGPScoordinates(address)
 	'use strict';
 	gps = gps_coordinates_request_statechange(request);
     };
+    request.addEventListener("error", function()
+			     {
+				 'use strict';
+				 alert("Impossible to get GPS coordinates of "+ address);
+			     });
     sendXMLHttpRequest(request);
     return gps;
 }

@@ -80,7 +80,7 @@ function sendXMLHttpRequest(request, data)
 {
     'use strict';
     
-    if(typeof(request) == 'undefined' || request == null)
+    if(!isXMLHttpRequest(request))
     {
 	return false;
     }
@@ -103,7 +103,9 @@ function sendXMLHttpRequest(request, data)
     }
     catch(exception)
     {
-	if(exception == undefined || exception == null)
+	if(exception == undefined ||
+	   exception == null ||
+	   (exception.name == "" && exception.message == ""))
 	{
 	    console.error('Error with a XMLHttpRequest');
 	}

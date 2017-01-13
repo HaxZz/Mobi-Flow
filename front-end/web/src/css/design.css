@@ -11,21 +11,22 @@
 
 @font-face
 {
-    font-family: Dustismo;
-    src: url("../fonts/dustismo.ttf");
+    font-family: "Dustismo";
+    src: url("fonts/dustismo.ttf");
 }
 
 @font-face
 {
-    font-family: Dustismo;
-    src: url("../fonts/dustismo_bold.ttf");
+    font-family: "Dustismo";
+    src: url("fonts/dustismo_bold.ttf");
+    font-weight: bold;
 }
 
 
 *
 {
     color: white;
-    font-family: Dustismo;
+    font-family: "Dustismo";
     font-size: large;
 }
 

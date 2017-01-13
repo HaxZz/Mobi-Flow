@@ -51,8 +51,9 @@ function draw_initial_map_error_api_id()
 
 function draw_initial_map_unsafe()
 {
-    var map = getMap().setView([44.8637064, -0.6563529], 13);
     'use strict';
+    
+    var map = getMap().setView([44.8637064, -0.6563529], 13);
     
     L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={accessToken}',
 		{
@@ -109,16 +110,16 @@ function get_travel_from_back_end(backendUrl)
 
     request.onreadystatechange = function()
     {
-		'use strict';
-		if(request.readyState == 4)
-		{
-		    if(request.status == 200)
-		    {
-			var json_received_string = request.responseText.trim();
-			var json_received = JSON.parse(json_received_string);
-			json_returned = json_received;
-		    }
-		}
+	'use strict';
+	if(request.readyState == 4)
+	{
+	    if(request.status == 200)
+	    {
+		var json_received_string = request.responseText.trim();
+		var json_received = JSON.parse(json_received_string);
+		json_returned = json_received;
+	    }
+	}
     };
     sendXMLHttpRequest(request, "");
     return json_returned;
@@ -144,26 +145,31 @@ function draw_map_from_json(jsonContent)
 				// For each trace coordinate of a segment
 				for (var k = 0; k < segment["traceCoordonnees"].length; k++) 
 				{
-					var node = segment["traceCoordonnees"][k];
+				    var node = segment["traceCoordonnees"][k];
 
-					//If first node place a marker
-					if(j == 0 && k == 0)
-						placeMarker(node["latitude"], node["longitude"]);
+				    // If first node place a marker
+				    if(j == 0 && k == 0)
+				    {
+					placeMarker(node["latitude"], node["longitude"]);
+				    }
 
 					arrayToDraw[k] = new L.LatLng(node["latitude"], node["longitude"]);
 					
 					//If last node place a marker
-					if(k == segment["traceCoordonnees"].length-1 && j == trajet.length-1)
-						placeMarker(node["latitude"], node["longitude"]);
+				    if(k == segment["traceCoordonnees"].length-1 &&
+				       j == trajet.length-1)
+				    {
+					placeMarker(node["latitude"], node["longitude"]);
+				    }
 				}
-
+			    
 				// Change color for each segment
 				var color;
 				var r = Math.floor(Math.random() * 255);
 				var g = Math.floor(Math.random() * 255);
 				var b = Math.floor(Math.random() * 255);
-				color= "rgb("+r+" ,"+g+","+ b+")"; 
-
+				color = "rgb("+r+" ,"+g+","+ b+")";
+			    
 				placePath(arrayToDraw, color);
 			}
 		}
