@@ -9,4 +9,4 @@ $bddData = array(
 );
 //TODO requete BDD pour inserer la reservation
 //TODO convenir du retour avec Spantu ( Dire 'OK' ou les errors)
-//echo $result;
+echo "Ma Bite";
