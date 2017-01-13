@@ -14,8 +14,9 @@ mb_internal_encoding('UTF-8');
 
 
 # Some usefull variables
-$GLOBALS['domain-name']   = 'localhost';
+$GLOBALS['domain-name']   = '192.168.12.65';
 $GLOBALS['URL']           = 'http://'. $GLOBALS['domain-name'] .'/';
+$GLOBALS['bridgeURL'] = $GLOBALS['URL'].'/MOBIFLOW/back-end/src/travel/bridge.php';
 $GLOBALS['absolute-path'] = realpath(dirname(__FILE__)) .'/';
 
 

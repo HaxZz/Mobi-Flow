@@ -3,8 +3,6 @@
  * https://creativecommons.org/licenses/by/4.0/
  */
 header('Access-Control-Allow-Origin: *');
-header('Cache-Control: no-cache');
-header('Pragma: no-cache');
 
 require_once("../users/UserService.class.php");
 
