@@ -2,7 +2,7 @@
 /* Creative Commons BY, version 4.0 or (at your option) any later version.
  * https://creativecommons.org/licenses/by/4.0/
  */
-
+header('Access-Control-Allow-Origin: *');
 
 $jsonInput = file_get_contents('php://input');
 if($jsonInput == "")
