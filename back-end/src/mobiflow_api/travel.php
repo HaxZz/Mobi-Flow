@@ -20,7 +20,7 @@ $ch = curl_init();
 # Setup request to send json via POST.
 curl_setopt($ch, CURLOPT_URL, $apiUrl);
 curl_setopt($ch, CURLOPT_POSTFIELDS, $request);
-curl_setopt($ch, CURLOPT_HTTPHEADER, array('Content-Type:application/json'));
+curl_setopt($ch, CURLOPT_HTTPHEADER, array('Content-Type:application/json; charset=utf-8'));
 # Return response instead of printing.
 curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 # Send request.

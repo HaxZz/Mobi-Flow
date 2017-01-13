@@ -27,7 +27,7 @@ class UserService {
         }        
         catch(Exception $e)
         {
-                echo 'Une erreur est survenue !';
+                echo '{"result": "fail", "errors": ["'. $e->getMessage() .'"]}';
                 die();
         }
         return $pdo;
@@ -46,7 +46,7 @@ class UserService {
 
         $stmt->execute(array('username' => $username));
         if($stmt->fetch()){
-            $outputJSON = '{ "result":"fail", "errors":"Username already registered" }';
+            $outputJSON = '{ "result":"fail", "errors":["Username already registered"] }';
             return json_encode($outputJSON);
         }
 
@@ -59,7 +59,7 @@ class UserService {
         }
 
         if( strlen($password) < 5 ){
-            $outputJSON = '{ "result":"fail", "errors":"Password too short" }';
+            $outputJSON = '{ "result":"fail", "errors":["Password too short"] }';
             return json_encode($outputJSON);
         }
 
@@ -92,17 +92,16 @@ class UserService {
         $stmt = $_db->prepare("SELECT id FROM user WHERE username = :login AND password = :pass");
         $stmt->execute(array("login" => $login, "pass" => $password));
         $id = $stmt->fetch()[0];
-        if( $id ){
-            
+        if( $id )
+        {
             $outputJSON = '{ "result" : "ok", "id-user" :'.$id.' }';
         }
-        else{
-            $outputJSON = '{ "result":"fail", "errors" : "login and/or password failed" }';
+        else
+        {
+            $outputJSON = '{ "result":"fail", "errors" : ["Login and/or password failed"] }';
         }
 
         return json_encode($outputJSON);
-       
-    
     }
 
     public function demandHandicap($id)
@@ -154,17 +153,18 @@ class UserService {
                 $outputJSON = '{ "result":"ok" }';                
             }
             else{
-                $outputJSON = '{"result" : "fail", "errors" : "Password not valid"}';
+                $outputJSON = '{"result" : "fail", "errors" : ["Password not valid"]}';
             }
         }
         else{
-            $outputJSON = '{ "result":"fail", "errors" : "login and/or password failed" }';
+            $outputJSON = '{ "result":"fail", "errors" : ["Login and/or password failed"] }';
         }
 
         return json_encode($outputJSON);
     }
 
-    public function Modify_Username($myJSON) {
+    public function Modify_Username($myJSON)
+    {
         $myObj = json_decode($myJSON);
         $id = $myObj->{'id'};
         $new_username = $myObj->{'new_username'};
@@ -179,18 +179,22 @@ class UserService {
 
         $stmt->execute(array('id' => $id));
         
-        if( $stmt->fetch() ){
+        if( $stmt->fetch() )
+        {
             $update = $_db->prepare("UPDATE user SET username = :new_username WHERE id = :id");
             
-            if($update->execute( array('id' => $id, 'new_username' => $new_username) )){
+            if($update->execute( array('id' => $id, 'new_username' => $new_username) ))
+            {
                 echo $new_username;               
                 $outputJSON = '{ "result":"ok" }';                
             }
-            else{
+            else
+            {
                 $outputJSON = '{"result" : "fail", "errors" : "Usename already valid"}';
             }
         }
-        else{
+        else
+        {
             $outputJSON = '{ "result":"fail", "errors" : "wrong id" }';
         }
 
@@ -225,14 +229,13 @@ class UserService {
             }
             else
             {
-                $outputJSON = '{ "result":"fail", "errors" : "wrong id" }';
+                $outputJSON = '{ "result":"fail", "errors" : ["wrong id"] }';
             }
             
             return json_encode($outputJSON);
         }
-
-        return json_encode('{ "result":"fail", "errors" : "no disabled" }');
-
+        
+        return json_encode('{ "result":"fail", "errors" : ["no disabled"] }');
     }
 
 }
