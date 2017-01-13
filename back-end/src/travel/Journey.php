@@ -6,7 +6,7 @@
 
 class Journey
 {
-    private $trajet; // Tableau de trajets
+    public $trajet; // Tableau de trajets
 	
     public function getTrajet()
     {

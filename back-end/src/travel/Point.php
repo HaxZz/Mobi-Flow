@@ -1,9 +1,9 @@
 <?php
 	class Point
 	{
-		private $adress;
-		private $coordinates;
-		private $time;
+		public $adress;
+		public $coordinates;
+		public $time;
 		
 		public function getAdress()
 		{

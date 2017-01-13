@@ -7,7 +7,7 @@ CREATE TABLE user
 	id         INT(4) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
 	username   VARCHAR(30),
 	password   VARCHAR(30),
-	disabled   CHAR,
+	disabled   VARCHAR(30),
 	firstname  VARCHAR(30),
 	lastname   VARCHAR(30),
 	email_addr VARCHAR(120)

@@ -63,9 +63,9 @@ class UserService {
             return json_encode($outputJSON);
         }
 
-        $stmt = $_db->prepare("INSERT INTO user (username, email_addr, password) VALUES (:username, :email_addr, :password)");
+        $stmt = $_db->prepare("INSERT INTO user (username, email_addr, password, disabled) VALUES (:username, :email_addr, :password, :disabled)");
         
-        if($stmt->execute(array("username" => $username, "email_addr" => $email, "password" => $password))){
+        if($stmt->execute(array("username" => $username, "email_addr" => $email, "password" => $password, "disabled" => "None"))){
             $stmt = $_db->prepare("SELECT id FROM user WHERE username = :username AND password = :password");
 
             $stmt->execute(array('username' => $username, 'password' => $password));

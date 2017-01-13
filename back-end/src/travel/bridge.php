@@ -17,6 +17,9 @@ $data = $input;
 
 // Requete
 $resultat_requete = requete($data);
+
 $voyages          = recuperer_voyages($resultat_requete);
+
 header('Content-type: application/json');
-echo json_encode($voyages);
+echo mb_convert_encoding(json_encode($voyages), "UTF-8", "ISO-8859-2");
+//echo utf8_decode_maison(json_encode($voyages));

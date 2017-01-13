@@ -6,8 +6,8 @@
 
 class Coordinates
 {
-    private $longitude;
-    private $latitude;
+    public $longitude;
+    public $latitude;
 		
     public function getLatitude()
     {
