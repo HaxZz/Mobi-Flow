@@ -1,5 +1,5 @@
 <?php
-header('Content-Type : application/json');
+header('Access-Control-Allow-Origin: *');
 $jsonInput = file_get_contents('php://input');
 $dataReceived = json_decode($jsonInput, true);
 $userID = $dataReceived['user-id'];
