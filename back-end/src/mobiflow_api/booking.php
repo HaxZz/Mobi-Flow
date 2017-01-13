@@ -1,4 +1,5 @@
 <?php
+header('Content-Type : application/json');
 $jsonInput = file_get_contents('php://input');
 $dataReceived = json_decode($jsonInput, true);
 $userID = $dataReceived['user-id'];
