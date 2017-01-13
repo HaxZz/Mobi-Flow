@@ -7,7 +7,9 @@ header('Access-Control-Allow-Origin: *');
 require_once("../users/UserService.class.php");
 
 $jsonInput = file_get_contents('php://input');
-$apiUrl = "http://haxz.freeboxos.fr/MOBIFLOW/back-end/src/travel/bridge.php";
+
+$apiUrl = "http://192.168.12.65/MOBIFLOW/back-end/src/travel/bridge.php";
+
 //$jsonInput = $_POST["json"];
 $travelRequest = json_decode($jsonInput, true);
 $userID = $travelRequest['user-id'];
