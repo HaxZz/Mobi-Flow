@@ -2,6 +2,7 @@
 <html>
   <head>
     <title>Profil - Mobi'Flow</title>
+    <script type="text/javascript" src="js/profil.js"></script>
   </head>
   <body>
     <h1>Fiche utilisateur/utilisatrice</h1>
@@ -10,11 +11,11 @@
     
     <form action="log-on">
       <ul class="buttons">
-	<li><input type="text"  placeholder="Mon prénom" /></li>
-	<li><input type="text"  placeholder="Mon nom" /></li>
-	<li><input type="date"  placeholder="Date de naissance "/></li>
-	<li><input type="email" placeholder="Addresse email" required="required" /></li>
-	<li><input type="text"  placeholder="Handicap ? (TODO mieux formuler)" /></li>
+	<li><input id="firstname" type="text"  placeholder="Mon prénom"  /></li>
+	<li><input id="lastname" type="text"  placeholder="Mon nom"  /></li>
+	<li><input id="birthday" type="date"  placeholder="Date de naissance " /></li>
+	<li><input id="email" type="email" placeholder="Addresse email" required="required" /></li>
+	<li><input id="disabled" type="text"  placeholder="Invalidité" /></li>
 	<!-- Genre ? Masculin, Feminin, Autre, Ne souhaite pas le declarer -->
       </ul>
       

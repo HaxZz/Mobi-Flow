@@ -114,6 +114,27 @@ class UserService {
         return $resultat['disabled'];
     }
 
+    public function update_profil($myJSON){
+        $myObj = json_decode($myJSON);
+        $id = $myObj->{'id'};
+        $firstname = $myObj->{'firstname'};
+        $lastname = $myObj->{'lastname'};
+        $birthday = $myObj->{'birthday'};
+        $disabled = $myObj->{'disabled'};
+        $email = $myObj->{'email'};
+
+        $_db = $this->connect();
+
+        $stmt = $_db->prepare("UPDATE user SET firstname = :firstname, lastname = :lastname, disabled = :disabled WHERE id = :id");
+
+        if($stmt->execute( array('firstname' => $firstname, 'lastname' => $lastname, 'disabled' => $disabled, 'id' => $id) )){
+            return json_encode('{"results" : "ok"}');
+        }
+
+        return json_encode('{"results" : "fail"}');
+        
+    }
+
     public function Modify_Password($myJSON)
     {
         $myObj = json_decode($myJSON);
@@ -123,8 +144,7 @@ class UserService {
 
         $_db = $this->connect();
 
-        $stmt = $_db->prepare("SELECT * FROM user ".
-                              "WHERE id = :id AND password =:password");
+        $stmt = $_db->prepare("SELECT * FROM user WHERE id = :id AND password =:password");
         $stmt->execute(array('id' => $id, 'password' => $password));
         if( $stmt->fetch() )
         {
@@ -147,14 +167,17 @@ class UserService {
     public function Modify_Username($myJSON) {
         $myObj = json_decode($myJSON);
         $id = $myObj->{'id'};
-        $password = $myObj->{'password'};
         $new_username = $myObj->{'new_username'};
+
+        if($new_username == ""){
+            return json_encode('{ "result":"fail", "errors" : "no username" }');
+        }
 
         $_db = $this->connect();
 
-        $stmt = $_db->prepare("SELECT * FROM user WHERE id = :id AND password = :password");
+        $stmt = $_db->prepare("SELECT * FROM user WHERE id = :id ");
 
-        $stmt->execute(array('id' => $id, 'password' => $password));
+        $stmt->execute(array('id' => $id));
         
         if( $stmt->fetch() ){
             $update = $_db->prepare("UPDATE user SET username = :new_username WHERE id = :id");
@@ -178,33 +201,38 @@ class UserService {
     {
         $myObj = json_decode($myJSON);
         $id = $myObj->{'id'};
-        $password = $myObj->{'password'};
         $disabled = $myObj->{'disabled'};
 
-        $_db = $this->connect();
+        if($disabled != ""){
 
-        $stmt = $_db->prepare("SELECT * FROM user WHERE id = :id AND password = :password");
-        $stmt->execute(array('id' => $id, 'password' => $password));
+            $_db = $this->connect();
 
-        if( $stmt->fetch() )
-        {
-            $update = $_db->prepare("UPDATE user SET disabled = :disabled WHERE id = :id");
-            
-            if($update->execute( array('id' => $id, 'disabled' => $disabled) ))
+            $stmt = $_db->prepare("SELECT * FROM user WHERE id = :id ");
+            $stmt->execute(array('id' => $id));
+
+            if( $stmt->fetch() )
             {
-                $outputJSON = '{ "result":"ok" }';                
+                $update = $_db->prepare("UPDATE user SET disabled = :disabled WHERE id = :id");
+                
+                if($update->execute( array('id' => $id, 'disabled' => $disabled) ))
+                {
+                    $outputJSON = '{ "result":"ok" }';                
+                }
+                else
+                {
+                    $outputJSON = '{"result" : "fail", "errors" : "disabled failed"}';
+                }
             }
             else
             {
-                $outputJSON = '{"result" : "fail", "errors" : "disabled failed"}';
+                $outputJSON = '{ "result":"fail", "errors" : "wrong id" }';
             }
+            
+            return json_encode($outputJSON);
         }
-        else
-        {
-            $outputJSON = '{ "result":"fail", "errors" : "wrong id" }';
-        }
-        
-        return json_encode($outputJSON);
+
+        return json_encode('{ "result":"fail", "errors" : "no disabled" }');
+
     }
 
 }

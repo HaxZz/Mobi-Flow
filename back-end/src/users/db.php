@@ -10,10 +10,24 @@ $user = "user";
 $pass = "pass";
 
 $UserService = new UserService($user,$pass);
+$json = '{ "firstname" : "tata", 
+        "lastname" : "truuuuuu",
+        "birthday" : "",
+        "email" : "toto@toto",
+        "disabled" : "",
+        "id" : 1
+    }';
+
+echo $json;
+
+echo "<br>";
+$output = $UserService->update_profil($json);
+
+echo $output;
 
 echo "Test enregistrement <br>";
 
-$json = '{"username": "toto1",
+$json = '{"username": "toto11",
 	"email"   : "toto@addr.tld",
 	"password": "totopass1"}';
 
@@ -34,7 +48,7 @@ echo $json;
 $output = $UserService->signIn($json);
 
 echo json_decode($output);
-/*
+
 echo "<br>Test connexion longin faux <br>";
 
 $json = '{"username": "toto",
@@ -57,7 +71,7 @@ echo json_decode($output);
 
 echo "<br>Test modify MDP <br>";
 
-$json = '{"id": "53",
+$json = '{"id": "3",
 	"new_pass"   : "totoPASS3",
 	"password": "totopass1"}';
 
@@ -95,5 +109,5 @@ if(empty($output)){
 else{
 	echo $output;
 }
-*/
+
 ?>
