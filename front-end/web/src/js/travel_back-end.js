@@ -11,6 +11,8 @@ var TRAVEL_BACKEND_URL = BACKEND_URL +"/TODO";
 var departure_string = $('#departure').val();
 var arrival_string   = $('#arrival').val();
 var date = Date.now(); // TODO
+var trajet_drawed = false;
+var trajet_confirmed = false;
 
 
 function get_json_to_send_for_travel(departure_string, arrival_string, date)
@@ -69,10 +71,15 @@ function get_travels()
     sendXMLHttpRequest(request, json_to_send);
 }
 
+function put_form_onsubmit()
+{
+'use strict';
 var form = document.querySelector("form");
 form.onsubmit = function()
-{	
-	var departure = document.getElementById("departure").value;
+{
+	'use strict';
+    
+    var departure = document.getElementById("departure").value;
 	var arrival = document.getElementById("arrival").value;
 
 	var beginning = getGPScoordinates(departure);
@@ -121,29 +128,37 @@ form.onsubmit = function()
 	"user-id": 3
 	});
 
-    request.open(method, "http://192.168.0.5/MOBIFLOW/back-end/src/mobiflow_api/travel.php", false);
+	if(!trajet_drawed)
+	{
+	    request.open(method, "http://192.168.0.5/MOBIFLOW/back-end/src/mobiflow_api/travel.php", false);
 
-    request.onreadystatechange = function()
-    {    
-    if(this.readyState == 4)
-    {
-        if(this.status == 200)
-        {
-        	alert(this.responseText);
-        	/*
-	        var json_received_string = this	.responseText.trim();
-	        var json_received = JSON.parse(json_received_string);
-	        alert(json_received);
-	        */
-        }
-    }
-    };
+	    request.onreadystatechange = function()
+	    {    
+	    if(this.readyState == 4)
+	    {
+	        if(this.status == 200)
+	        {
+		        var json_received_string = this	.responseText.trim();
+		        var json_received = JSON.parse(json_received_string);
+		        draw_map_from_json(json_received);
+		        trajet_drawed = true;
+		        var inputSubmit = document.querySelector("input[type='submit']");
+		        inputSubmit.value = "Confirmer";
+	        }
+	    }
+	    };
 
-    sendXMLHttpRequest(request, data);
-
-	goto_page("success");
+	    sendXMLHttpRequest(request, data);
+	}
+	else
+	{
+		//TODO booking
+		goto_page("success");
+	}	
 
 	return false;    	
 };
+}
 
 window.addEventListener('load', get_travels, false);
+put_form_onsubmit();

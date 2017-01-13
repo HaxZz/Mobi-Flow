@@ -78,7 +78,7 @@ function placePath(array, color)
 function draw_initial_map()
 {
     'use strict';
-    
+
     if(document.getElementById(MAP_HTML_ID) == null)
     {
 	draw_initial_map_error_element();
@@ -171,3 +171,4 @@ function draw_map_from_json(jsonContent)
 }
 
 window.addEventListener('load', draw_initial_map, false);
+draw_initial_map();
