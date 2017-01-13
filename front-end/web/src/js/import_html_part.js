@@ -172,24 +172,23 @@ function goto_page(name)
 {
     'use strict';
     
-    // TODO manage previous and forward
-    // https://developer.mozilla.org/en-US/docs/Web/API/History_API
-    
     var new_url = window.location.pathname + "#" + name;
-    history.pushState(null, null, new_url);
+    history.pushState   (null, null, new_url);
     history.replaceState(null, null, new_url);
 
     fill_page_with_import_inc_html(name);
-    
-    // window.location = "#" + name;
 }
 
 
-window.onpopstate = function(){
-    if(window.location.hash.length != 0){
+window.onpopstate = function()
+{
+    'use strict';
+    if(window.location.hash.length != 0)
+    {
         name = window.location.hash.substr(1);
     }
-    else{
+    else
+    {
         name = 'offline';
     }
     fill_page_with_import_inc_html(name);
