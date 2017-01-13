@@ -130,7 +130,7 @@ form.onsubmit = function()
 
 	if(!trajet_drawed)
 	{
-	    request.open(method, "http://192.168.0.5/MOBIFLOW/back-end/src/mobiflow_api/travel.php", false);
+	    request.open(method, "http://192.168.12.65/MOBIFLOW/back-end/src/mobiflow_api/travel.php", false);
 
 	    request.onreadystatechange = function()
 	    {    
