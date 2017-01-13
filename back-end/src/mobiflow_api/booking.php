@@ -1,5 +1,5 @@
 <?php
-
+header('Access-Control-Allow-Origin: *');
 $jsonInput = $_POST['json'];
 $dataReceived = json_decode($jsonInput, true);
 $userID = $_POST['user-id'];
@@ -9,4 +9,4 @@ $bddData = array(
 );
 //TODO requete BDD pour inserer la reservation
 //TODO convenir du retour avec Spantu ( Dire 'OK' ou les errors)
-//echo $result;
+echo "Ma Bite";
